@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 public class LoginController {
 	
-	@GetMapping("")
+	@GetMapping("/")
 	public String login(Model model) {
 		model.addAttribute("title", "Login");
 		return "login";
 	}
 	
 	@PostMapping("/doLogin")
-	public String doLogin() {
-		
+	public String doLogin(Model model) {
+		model.addAttribute("title", "Login Success");
 		return "loginSuccess";
 	}
 	

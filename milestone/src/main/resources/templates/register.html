@@ -4,7 +4,45 @@
 <body>
 
 	<div layout:fragment="content">
-		<h1>Register</h1>
+
+		<form style="padding-right: 70%" action="#" th:action="@{doRegister}" th:object="${userModel}" method="post">
+
+			<div class="form-group">
+				<label for="firstName">First Name</label>
+				<input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="First Name">
+			</div>
+
+
+			<div class="form-group">
+				<label for="lastName">Last Name</label>
+				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Last Name">
+			</div>
+
+			<div class="form-group">
+				<label for="age">Age</label>
+				<input type="number" class="form-control" id="age" aria-describedby="age" placeholder="Age">
+			</div>
+
+
+			<div class="form-group">
+				<label for="email">Email address</label>
+				<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+			</div>
+
+			<div class="form-group">
+				<label for="username">Username</label>
+				<input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Username">
+			</div>
+			<div class="form-group">
+
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" placeholder="Password">
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+		</form>
+		<br />
 	</div>
 
 </body>

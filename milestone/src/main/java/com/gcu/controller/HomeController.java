@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/")
 public class HomeController {
 
-	@GetMapping("")
+	@GetMapping("/")
 	public String goHome(Model model) {
 		model.addAttribute("title", "Home");
 		return "home";

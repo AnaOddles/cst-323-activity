@@ -3,8 +3,14 @@
 <body>
 
 	<div th:fragment="header">
+
 		<!-- Navigation Bar -->
-		
+		<!-- As a link -->
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="">Navbar</a>
+		</nav>
+
+
 		<!-- Page Title and Logo -->
 		<h2 th:text="${title}">Default Title</h2><br />
 
@@ -12,7 +18,7 @@
 
 	<!-- Common Footer Fragment -->
 	<div th:fragment="footer">
-		
+
 	</div>
 
 </body>

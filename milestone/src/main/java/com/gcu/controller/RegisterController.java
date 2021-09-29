@@ -39,7 +39,7 @@ public class RegisterController {
 		System.out.println("Id: " + userModel.getId());
 		
 		model.addAttribute("title", "Register Success");
-		model.addAttribute("name" + userModel.getFirstName() + " " + userModel.getLastName());
+		model.addAttribute("welcome" + "Welcome to the squad, " + userModel.getFirstName() + " " + userModel.getLastName());
 		return "registerSuccess";
 	}
 

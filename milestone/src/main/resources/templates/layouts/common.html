@@ -10,8 +10,10 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" class="nav-item nav-link" href="/">Home</a>
-					<a th:classappend="${#httpServletRequest.getRequestURI() == '/register/' ? 'active':''}"class="nav-item nav-link" href="/register/">Register</a>
-					<a th:classappend="${#httpServletRequest.getRequestURI() == '/login/' ? 'active':''}"class="nav-item nav-link" href="/login/">Login</a>
+					<a th:classappend="${#httpServletRequest.getRequestURI() == '/register/' || 
+					#httpServletRequest.getRequestURI() == '/register/doRegister' ? 'active':''}"class="nav-item nav-link" href="/register/">Register</a>
+					<a th:classappend="${#httpServletRequest.getRequestURI() == '/login/' || 
+					#httpServletRequest.getRequestURI() == '/login/doLogin' ? 'active':''}"class="nav-item nav-link" href="/login/">Login</a>
 				</div>
 			</div>
 		</nav>

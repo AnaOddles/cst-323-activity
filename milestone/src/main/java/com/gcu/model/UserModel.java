@@ -4,19 +4,17 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserModel {
 
 	private long id;
-	
+
 	@NotBlank(message = "First Name cannot be blank")
 	@NotNull()
 	@Size(max = 20, message = "First Name must be less than 20 characters")
 	private String firstName;
-	
 
 	@NotBlank(message = "Last Name cannot be blank")
 	@NotNull()
@@ -26,22 +24,19 @@ public class UserModel {
 	@Min(value = 5, message = "Age cannot be less than 5")
 	@Max(value = 150, message = "Age cannot be greater than 150")
 	private int age;
-	
-	@NotEmpty(message = "Email cannot be empty")
+
 	@NotBlank(message = "Email cannot be blank")
-	@Email(message="Please enter a valid email address")
+	@Email(message = "Please enter a valid email address")
 	private String email;
-	
-	@NotEmpty(message = "Username cannot be empty")
+
 	@NotBlank(message = "Username cannot be blank")
 	@NotNull(message = "Username is a required field")
-	@Size(min = 1, max = 20, message = "Username must be between 1 and 20 characters")
+	@Size(max = 20, message = "Username must be less than 20 characters")
 	private String username;
-	
-	@NotEmpty(message = "Password cannot be empty")
+
 	@NotBlank(message = "Password cannot be blank")
 	@NotNull(message = "Password is a required field")
-	@Size(min = 1, max = 30, message = "Password must be between 1 and 30 characters")
+	@Size(max = 30, message = "Password must be less than 30 characters")
 	private String password;
 
 	public long getId() {

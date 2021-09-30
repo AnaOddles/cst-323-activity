@@ -5,22 +5,38 @@
 	<div th:fragment="header">
 
 		<!-- Navigation Bar -->
+
+		<!-- Logo Portion -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="/">Game+1</a>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" class="nav-item nav-link" href="/">Home</a>
-					<a th:classappend="${#httpServletRequest.getRequestURI() == '/register/' || 
-					#httpServletRequest.getRequestURI() == '/register/doRegister' ? 'active':''}"class="nav-item nav-link" href="/register/">Register</a>
-					<a th:classappend="${#httpServletRequest.getRequestURI() == '/login/' || 
-					#httpServletRequest.getRequestURI() == '/login/doLogin' ? 'active':''}"class="nav-item nav-link" href="/login/">Login</a>
-				</div>
-			</div>
+			<a class="navbar-brand" href="#">Game+1</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBar"
+				aria-controls="navBar" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Different nav elements -->
+			<div class="collapse navbar-collapse" id="navBar">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" class="nav-item nav-link" href="/">Home</a>
+      				</li>
+      				<li class="nav-item">
+       					<a th:classappend="${#httpServletRequest.getRequestURI() == '/register/' || 
+						#httpServletRequest.getRequestURI() == '/register/doRegister' ? 'active':''}"class="nav-item nav-link" href="/register/">Register</a>
+      				</li>
+           			<li class="nav-item">
+				        <a th:classappend="${#httpServletRequest.getRequestURI() == '/login/' || 
+									#httpServletRequest.getRequestURI() == '/login/doLogin' ? 'active':''}"class="nav-item nav-link" href="/login/">Login</a>
+     				 </li>
+    			</ul>
+ 
+  			</div>
 		</nav>
 		
 		<!-- Page Title -->
 		<div style="padding-left: 70px; padding-right: 70px; padding-top: 40px;"> 
 		<h1 th:text="${title}">Default Title</h1>
+		<!-- Create Line -->
 		<hr />
 		</div>
 		

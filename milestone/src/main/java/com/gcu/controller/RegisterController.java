@@ -37,7 +37,7 @@ public class RegisterController {
 		UserList.userList.put(id, userModel);
 		
 		System.out.println("Id: " + userModel.getId());
-		
+		System.out.println("UserModel Registered: " + userModel.toString());
 		model.addAttribute("title", "Register Success");
 		model.addAttribute("welcome", "Welcome to the squad, " + userModel.getFirstName() + " " + userModel.getLastName());
 		return "registerSuccess";

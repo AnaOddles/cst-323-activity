@@ -44,7 +44,7 @@ public class LoginModel {
 
 	@Override
 	public String toString() {
-		return "LoginModel:\\n id: " + id + ",\\n username: " + username + ",\\n password: " + password;
+		return "LoginModel:\n id: " + id + ",\n username: " + username + ",\n password: " + password;
 	}
 	
 	

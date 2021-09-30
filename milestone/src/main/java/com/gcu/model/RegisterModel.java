@@ -61,9 +61,9 @@ public class RegisterModel extends LoginModel {
 
 	@Override
 	public String toString() {
-		return "RegisterModel:\\n id: " + super.getId() + ",\\n firstName: " + firstName + ",\\n lastName: " + lastName
-				+ ",\\n age: " + age + ",\\n email: " + email + ",\\n username: " + super.getUsername()
-				+ ",\\n password: " + super.getPassword();
+		return "RegisterModel:\n id: " + super.getId() + ",\n firstName: " + firstName + ",\n lastName: " + lastName
+				+ ",\n age: " + age + ",\n email: " + email + ",\n username: " + super.getUsername()
+				+ ",\n password: " + super.getPassword();
 	}
 
 }

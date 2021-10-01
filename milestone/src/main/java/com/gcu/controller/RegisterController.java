@@ -8,9 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.gcu.model.RegisterModel;
 import com.gcu.model.UserList;
-import com.gcu.model.UserModel;
 
 @Controller
 @RequestMapping("/register")
@@ -19,27 +18,28 @@ public class RegisterController {
 	@GetMapping("/")
 	public String display(Model model) {
 		model.addAttribute("title", "Register");
-		model.addAttribute("userModel", new UserModel());
+		model.addAttribute("registerModel", new RegisterModel());
 		return "register";
 	}
 
 	@PostMapping("/doRegister")
-	public String doRegister(@Valid UserModel userModel, BindingResult bindingResult, Model model) {
+	public String doRegister(@Valid RegisterModel registerModel, BindingResult bindingResult, Model model) {
 		
-		// Check for validation errors
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("title", "Register");
 			return "register";
 		}
 		
 		int id = UserList.userList.size();
-		userModel.setId(id);
-		UserList.userList.put(id, userModel);
+	
 		
-		System.out.println("Id: " + userModel.getId());
-		System.out.println("UserModel Registered: " + userModel.toString());
+		registerModel.getLoginUser().setId(id);
+		UserList.userList.put(id, registerModel);
+		
+		System.out.println("Id: " + registerModel.getLoginUser());
+		System.out.println("UserModel Registered: " + registerModel.toString());
 		model.addAttribute("title", "Register Success");
-		model.addAttribute("welcome", "Welcome to the squad, " + userModel.getFirstName() + " " + userModel.getLastName());
+		model.addAttribute("welcome", "Welcome to the squad, " + registerModel.getFirstName() + " " + registerModel.getLastName());
 		return "registerSuccess";
 	}
 

@@ -34,7 +34,7 @@ public class RegisterController {
 	
 		
 		registerModel.getLoginUser().setId(id);
-		UserList.userList.put(id, registerModel);
+		UserList.userList.put(id, registerModel.getLoginUser());
 		
 		System.out.println("Id: " + registerModel.getLoginUser());
 		System.out.println("UserModel Registered: " + registerModel.toString());

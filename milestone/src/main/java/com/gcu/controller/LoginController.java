@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gcu.model.UserModel;
+import com.gcu.model.LoginModel;
 
 @Controller
 @RequestMapping("/login")
@@ -18,14 +18,14 @@ public class LoginController {
 	@GetMapping("/")
 	public String login(Model model) {
 		model.addAttribute("title", "Login");
-		model.addAttribute("userModel", new UserModel());
+		model.addAttribute("loginModel", new LoginModel());
 		return "login";
 	}
 
 	@PostMapping("/doLogin")
-	public String doLogin(@Valid UserModel userModel, BindingResult bindingResult, Model model) {
+	public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
 
-		// Check for validation errors
+		// Check for validation errors 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("title", "Login");
 			return "login";

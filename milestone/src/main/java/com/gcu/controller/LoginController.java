@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.model.LoginModel;
+import com.gcu.model.UserList;
 
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /login in URI - root
@@ -53,7 +54,8 @@ public class LoginController {
 	 */
 	@PostMapping("/doLogin")
 	public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
-
+		System.out.println("Attempting login");
+    
 		// Check for validation errors
 		if (bindingResult.hasErrors()) {
 			// Valid LoginModel fails -> doesn't pass all model property requirements
@@ -62,21 +64,46 @@ public class LoginController {
 			// Return login view to show login page -> also outputs error messages
 			return "login";
 		}
-
+    
 		// Validation error check passed -> no validation errors
-
-		// Set model attribute title
-		model.addAttribute("title", "Login Success");
-
-		// TODO Add Logic to check HashMap to see if user has entered valid credentials
-
-		// User Credentials are Invalid
-		// TODO Create loginFailure
-		// return "loginFailure";
-
+	
+		//Check login attempt calling loginUser helper method
 		// User Credentials are valid
-		// Return LoginSuccess view
-		return "loginSuccess";
+		if(loginUser(loginModel)) {	
+			// Set model attribute title
+			model.addAttribute("title", "Login Success");
+			model.addAttribute("userLoginMessage", "Hi " + loginModel.getUsername() + ", welcome back!");
+			System.out.println("User logged in: " + loginModel.getUsername());
+			return "loginSuccess";
+		}
+		
+		// User Credentials are Invalid
+		
+		// Set model attribute title
+		model.addAttribute("title", "Login Failure");
+		model.addAttribute("userLoginMessage", "Uh oh... please try again " + loginModel.getUsername());
+		System.out.println("Login failed for: " + loginModel.getUsername());
+		return "loginFailure";
+	}
+	
+	/*
+	 * Helper method - checks global var of users for log in attempt 
+	 *
+	 * @param LoginModel
+	 * 
+	 * @return boolean
+	 * 
+	 */
+	public boolean loginUser(LoginModel login){
+		//Loop through hashamp of users
+		for(LoginModel item : UserList.userList.values()) {
+			//If login attempt matches the login of a registered user
+			if(item.getUsername().equals(login.getUsername()) && 
+					item.getPassword().equals(login.getPassword())) {
+				return true;
+			}
+		}
+		return false;	
 	}
 
 }

@@ -1,3 +1,9 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// October 3, 2021
+// This is our own work
+
 package com.gcu.model;
 
 import javax.validation.Valid;
@@ -8,8 +14,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+// RegisterModel class
 public class RegisterModel{
-
+	
+	// Properties
+	// @ Signals data validation rules
+	
 	@NotBlank(message = "First Name cannot be blank")
 	@NotNull()
 	@Size(max = 20, message = "First Name must be less than 20 characters")
@@ -28,9 +38,11 @@ public class RegisterModel{
 	@Email(message = "Please enter a valid email address")
 	private String email;
 	
+	// VALID checks HAS-A LoginModel data validation
 	@Valid
 	private LoginModel loginUser;
 
+	// GETTERS AND SETTERS
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,7 +82,8 @@ public class RegisterModel{
 	public void setLoginUser(LoginModel loginUser) {
 		this.loginUser = loginUser;
 	}
-
+	
+	// TO STRING
 	@Override
 	public String toString() {
 		return "RegisterModel:\n id: " + loginUser.getId() + ",\n firstName: " + firstName + ",\n lastName: " + lastName

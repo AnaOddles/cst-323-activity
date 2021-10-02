@@ -29,7 +29,8 @@ This is our own work
 						<a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" class="nav-item nav-link" href="/">Home</a>
       				</li>
       				<li class="nav-item">
-       					<a th:classappend="${#httpServletRequest.getRequestURI() == '/products/' ? 'active':''}"class="nav-item nav-link" href="/register/">Products</a>
+       					<a th:classappend="${#httpServletRequest.getRequestURI() == '/products/' || 
+       					#httpServletRequest.getRequestURI() == '/login/doLogin' ? 'active':''}"class="nav-item nav-link" href="/register/">Products</a>
       				</li>
            			
     			</ul>

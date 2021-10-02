@@ -36,13 +36,13 @@
 			<div class="form-group">
 				<label for="username">Username</label>
 				<input type="text" class="form-control" th:field="*{loginUser.username}" aria-describedby="username" placeholder="Username">
-				<small style="color:red" th:if="${#fields.hasErrors('loginUser.username')}" th:errors="*{username}">Username</small>
+				<small style="color:red" th:if="${#fields.hasErrors('loginUser.username')}" th:errors="*{loginUser.username}">Username</small>
 			</div>
 			<div class="form-group">
 
 				<label for="password">Password</label>
 				<input type="password" class="form-control" th:field="*{loginUser.password}" placeholder="Password">
-				<small style="color:red" th:if="${#fields.hasErrors('loginUser.password')}" th:errors="*{password}">Password</small>
+				<small style="color:red" th:if="${#fields.hasErrors('loginUser.password')}" th:errors="*{loginUser.password}">Password</small>
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Submit</button>

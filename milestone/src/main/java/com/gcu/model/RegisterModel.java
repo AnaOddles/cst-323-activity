@@ -1,5 +1,6 @@
 package com.gcu.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -27,6 +28,7 @@ public class RegisterModel{
 	@Email(message = "Please enter a valid email address")
 	private String email;
 	
+	@Valid
 	private LoginModel loginUser;
 
 	public String getFirstName() {

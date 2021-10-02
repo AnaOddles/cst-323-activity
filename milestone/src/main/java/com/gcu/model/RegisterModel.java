@@ -1,5 +1,6 @@
 package com.gcu.model;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -7,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class RegisterModel extends LoginModel {
+public class RegisterModel{
 
 	@NotBlank(message = "First Name cannot be blank")
 	@NotNull()
@@ -26,6 +27,9 @@ public class RegisterModel extends LoginModel {
 	@NotBlank(message = "Email cannot be blank")
 	@Email(message = "Please enter a valid email address")
 	private String email;
+	
+	@Valid
+	private LoginModel loginUser;
 
 	public String getFirstName() {
 		return firstName;
@@ -59,11 +63,19 @@ public class RegisterModel extends LoginModel {
 		this.email = email;
 	}
 
+	public LoginModel getLoginUser() {
+		return loginUser;
+	}
+
+	public void setLoginUser(LoginModel loginUser) {
+		this.loginUser = loginUser;
+	}
+
 	@Override
 	public String toString() {
-		return "RegisterModel:\n id: " + super.getId() + ",\n firstName: " + firstName + ",\n lastName: " + lastName
-				+ ",\n age: " + age + ",\n email: " + email + ",\n username: " + super.getUsername()
-				+ ",\n password: " + super.getPassword();
+		return "RegisterModel:\n id: " + loginUser.getId() + ",\n firstName: " + firstName + ",\n lastName: " + lastName
+				+ ",\n age: " + age + ",\n email: " + email + ",\n username: " + loginUser.getUsername()
+				+ ",\n password: " + loginUser.getPassword();
 	}
 
 }

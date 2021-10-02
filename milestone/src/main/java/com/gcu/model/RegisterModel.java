@@ -12,14 +12,15 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 // RegisterModel class
-public class RegisterModel{
-	
+public class RegisterModel {
+
 	// Properties
 	// @ Signals data validation rules
-	
+
 	@NotBlank(message = "First Name cannot be blank")
 	@NotNull()
 	@Size(max = 20, message = "First Name must be less than 20 characters")
@@ -37,7 +38,11 @@ public class RegisterModel{
 	@NotBlank(message = "Email cannot be blank")
 	@Email(message = "Please enter a valid email address")
 	private String email;
-	
+
+	@NotBlank(message = "Phone Number cannot be blank")
+	@Pattern(regexp = "[0-9]{3}-[0-9]{3}-[0-9]{4}", message="Phone number must be in 111-111-1111 format")
+	private String phoneNum;
+
 	// VALID checks HAS-A LoginModel data validation
 	@Valid
 	private LoginModel loginUser;
@@ -82,13 +87,21 @@ public class RegisterModel{
 	public void setLoginUser(LoginModel loginUser) {
 		this.loginUser = loginUser;
 	}
-	
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
 	// TO STRING
 	@Override
 	public String toString() {
 		return "RegisterModel:\n id: " + loginUser.getId() + ",\n firstName: " + firstName + ",\n lastName: " + lastName
-				+ ",\n age: " + age + ",\n email: " + email + ",\n username: " + loginUser.getUsername()
-				+ ",\n password: " + loginUser.getPassword();
+				+ ",\n age: " + age + ",\n email: " + email + ",\nphone number: " + phoneNum + ",\n username: "
+				+ loginUser.getUsername() + ",\n password: " + loginUser.getPassword();
 	}
 
 }

@@ -40,6 +40,12 @@ This is our own work
 				<input type="email" class="form-control" th:field="*{email}" aria-describedby="emailHelp" placeholder="Email">
 				<small style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email</small>
 			</div>
+			
+			<div class="form-group">
+				<label for="phoneNum">Phone Number</label>
+				<input type="text" class="form-control" th:field="*{phoneNum}" aria-describedby="phoneNumHelp" placeholder="Phone Number">
+				<small style="color:red" th:if="${#fields.hasErrors('phoneNum')}" th:errors="*{phoneNum}">Phone Number</small>
+			</div>
 
 			<div class="form-group">
 				<label for="username">Username</label>

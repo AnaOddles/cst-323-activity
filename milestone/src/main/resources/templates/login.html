@@ -8,7 +8,7 @@
 
 			<div class="form-group">
 				<label for="username">Username</label>
-				<input type="text" class="form-control" id="username" aria-describedby="username"
+				<input type="text" class="form-control" th:field="*{username}" id="username" aria-describedby="username" 
 					placeholder="Username">
 				<small style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username</small>
 			</div>
@@ -16,7 +16,7 @@
 			<div class="form-group">
 
 				<label for="password">Password</label>
-				<input type="password" class="form-control" id="password" placeholder="Password">
+				<input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Password">
 			<small style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password</small>
 			</div>
 

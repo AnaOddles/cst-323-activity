@@ -27,7 +27,7 @@ public class ProductsController {
 	 * 
 	 */
 	@GetMapping("/")
-	public String goHome(Model model) {
+	public String displayProducts(Model model) {
 		// Add model attribute Title
 		model.addAttribute("title", "Products");
 		return "products";

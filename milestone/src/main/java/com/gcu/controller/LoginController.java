@@ -6,6 +6,9 @@
 
 package com.gcu.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.model.LoginModel;
+import com.gcu.model.ProductModel;
 import com.gcu.model.UserList;
 
 //Annotations to make the class a controller
@@ -55,7 +59,7 @@ public class LoginController {
 	@PostMapping("/doLogin")
 	public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
 		System.out.println("Attempting login");
-    
+
 		// Check for validation errors
 		if (bindingResult.hasErrors()) {
 			// Valid LoginModel fails -> doesn't pass all model property requirements
@@ -64,46 +68,56 @@ public class LoginController {
 			// Return login view to show login page -> also outputs error messages
 			return "login";
 		}
-    
+
 		// Validation error check passed -> no validation errors
-	
-		//Check login attempt calling loginUser helper method
-		// User Credentials are valid
-		if(loginUser(loginModel)) {	
+
+		// Check login attempt calling loginUser helper method
+		// User Credentials are validß
+		if (loginUser(loginModel)) {
+			// Create some Products and add list
+			List<ProductModel> products = new ArrayList<ProductModel>();
+			products.add(new ProductModel(0L, "Mario 64", "Nintendo", "3D Platform", "ESRB", "September 29, 1996",
+					"mario-64.jpeg", " Since its release, Super Mario 64 has "
+							+ "been widely acclaimed as one of the greatest and most important games of all time"));
+			products.add(new ProductModel(1L, "Halo: Reach", "Microsoft Game Studios", "First-person shooter", "N/A",
+					"September 14, 2010", "halo-reach.jpeg",
+					"The game takes place in the year 2552, where humanity is "
+							+ "locked in a war with the alien Covenant. Players control Noble Six, a member of an elite"
+							+ " supersoldier squad, when the human world known as Reach falls under Covenant attack."));
+
 			// Set model attribute title
-			model.addAttribute("title", "Login Success");
-			model.addAttribute("userLoginMessage", "Hi " + loginModel.getUsername() + ", welcome back!");
+			model.addAttribute("title", "Your Games");
+			model.addAttribute("products", products);
 			System.out.println("User logged in: " + loginModel.getUsername());
-			return "loginSuccess";
+			return "products";
 		}
-		
+
 		// User Credentials are Invalid
-		
+
 		// Set model attribute title
 		model.addAttribute("title", "Login Failure");
 		model.addAttribute("userLoginMessage", "Uh oh... please try again " + loginModel.getUsername());
 		System.out.println("Login failed for: " + loginModel.getUsername());
 		return "loginFailure";
 	}
-	
+
 	/*
-	 * Helper method - checks global var of users for log in attempt 
+	 * Helper method - checks global var of users for log in attempt
 	 *
 	 * @param LoginModel
 	 * 
 	 * @return boolean
 	 * 
 	 */
-	public boolean loginUser(LoginModel login){
-		//Loop through hashamp of users
-		for(LoginModel item : UserList.userList.values()) {
-			//If login attempt matches the login of a registered user
-			if(item.getUsername().equals(login.getUsername()) && 
-					item.getPassword().equals(login.getPassword())) {
+	public boolean loginUser(LoginModel login) {
+		// Loop through hashamp of users
+		for (LoginModel item : UserList.userList.values()) {
+			// If login attempt matches the login of a registered user
+			if (item.getUsername().equals(login.getUsername()) && item.getPassword().equals(login.getPassword())) {
 				return true;
 			}
 		}
-		return false;	
+		return false;
 	}
 
 }

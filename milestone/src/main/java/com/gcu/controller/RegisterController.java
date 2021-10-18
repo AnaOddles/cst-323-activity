@@ -8,21 +8,26 @@ package com.gcu.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gcu.business.SecurityBusinessServiceInterface;
 import com.gcu.model.RegisterModel;
-import com.gcu.model.UserList;
 
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /register in URI - root
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
-
+	//Inject security service using dependency injection
+	@Autowired
+	private SecurityBusinessServiceInterface securityService;
+	
 	/*
 	 * Return a view along with a model attribute Mappings - Invokes using '/' in
 	 * URI after controller mapping '/register/'
@@ -63,18 +68,7 @@ public class RegisterController {
 			return "register";
 		}
 
-		// Retrieve ID by looking at the size of the HashMap
-		int id = UserList.userList.size();
-
-		// Set the models id by getting the login user object and setting the id
-		registerModel.getLoginUser().setId(id);
-		// Add the LoginModel to the HashMap using the ID as the key and the LoginModel
-		// as the value
-		UserList.userList.put(id, registerModel.getLoginUser());
-
-		// Print the ID and UserModel to the console
-		System.out.println("Id: " + registerModel.getLoginUser());
-		System.out.println("UserModel Registered: " + registerModel.toString());
+		securityService.register(registerModel);
 		// Set model attribute title
 		model.addAttribute("title", "Register Success");
 		// Set model attribute welcome with registerModel information

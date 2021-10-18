@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,15 +19,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gcu.business.SecurityBusinessServiceInterface;
 import com.gcu.model.LoginModel;
 import com.gcu.model.ProductModel;
-import com.gcu.model.UserList;
 
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /login in URI - root
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+	
+	//Inject security service using dependency injection
+	@Autowired
+	private SecurityBusinessServiceInterface securityService;
 
 	/*
 	 * Return a view name along with a model attribute Mappings - Invokes using '/'
@@ -73,7 +78,7 @@ public class LoginController {
 
 		// Check login attempt calling loginUser helper method
 		// User Credentials are validß
-		if (loginUser(loginModel)) {
+		if (securityService.login(loginModel)) {
 			// Create some Products and add list
 			List<ProductModel> products = new ArrayList<ProductModel>();
 			products.add(new ProductModel(0L, "Mario 64", "Nintendo", "3D Platform", "ESRB", "September 29, 1996",
@@ -101,23 +106,5 @@ public class LoginController {
 		return "loginFailure";
 	}
 
-	/*
-	 * Helper method - checks global var of users for log in attempt
-	 *
-	 * @param LoginModel
-	 * 
-	 * @return boolean
-	 * 
-	 */
-	public boolean loginUser(LoginModel login) {
-		// Loop through hashamp of users
-		for (LoginModel item : UserList.userList.values()) {
-			// If login attempt matches the login of a registered user
-			if (item.getUsername().equals(login.getUsername()) && item.getPassword().equals(login.getPassword())) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 }

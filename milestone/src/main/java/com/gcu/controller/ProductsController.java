@@ -8,6 +8,7 @@ package com.gcu.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gcu.business.ProductBusinessServiceInterface;
 import com.gcu.model.ProductList;
 import com.gcu.model.ProductModel;
 
@@ -23,7 +25,10 @@ import com.gcu.model.ProductModel;
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
-
+	// Inject product service using dependency injection
+	@Autowired
+	private ProductBusinessServiceInterface productService; 
+	
 	/*
 	 * Return a view name along with a model attribute Mapping - Invokes using '/'
 	 * in URI after controller mapping '/products/'
@@ -54,6 +59,9 @@ public class ProductsController {
 			model.addAttribute("error", "error");
 			return "products";
 		}
+		
+		// Add product to ArrayList utilizing service
+		productService.createProduct(productModel);
 		
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());

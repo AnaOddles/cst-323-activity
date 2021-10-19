@@ -29,8 +29,8 @@ import com.gcu.model.ProductModel;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	
-	//Inject security service using dependency injection
+
+	// Inject security service using dependency injection
 	@Autowired
 	private SecurityBusinessServiceInterface securityService;
 
@@ -78,20 +78,8 @@ public class LoginController {
 		// Validation error check passed -> no validation errors
 
 		// Check login attempt calling loginUser helper method
-		// User Credentials are validß
-		if (securityService.login(loginModel) ||
-				loginModel.getUsername().equals("melanie")) { // used for testing
-			// Create some Products and add list
-			ProductList.productList.add(0, new ProductModel(0L, "Mario 64", "Nintendo", "3D Platform", "ESRB", "September 29, 1996",
-					"mario-64.jpeg", " Since its release, Super Mario 64 has "
-							+ "been widely acclaimed as one of the greatest and most important games of all time"));
-				
-			ProductList.productList.add(1, new ProductModel(1L, "Halo: Reach", "Microsoft Game Studios", "First-person shooter", "N/A",
-					"September 14, 2010", "halo-reach.jpeg",
-					"The game takes place in the year 2552, where humanity is "
-							+ "locked in a war with the alien Covenant. Players control Noble Six, a member of an elite"
-							+ " supersoldier squad, when the human world known as Reach falls under Covenant attack."));
-	
+		// User Credentials are valid
+		if (securityService.login(loginModel) || loginModel.getUsername().equals("melanie")) { // used for testing
 
 			// Set model attribute title
 			model.addAttribute("title", "Products");
@@ -111,6 +99,5 @@ public class LoginController {
 		System.out.println("Login failed for: " + loginModel.getUsername());
 		return "loginFailure";
 	}
-
 
 }

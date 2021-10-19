@@ -85,7 +85,7 @@ public class LoginController {
 
 		// Check login attempt calling loginUser helper method
 		// User Credentials are validß
-		if (securityService.login(loginModel)) {
+		if (securityService.authenticateUser(loginModel)) {
 			// Create some Products and add list
 			List<ProductModel> products = new ArrayList<ProductModel>();
 			products.add(new ProductModel(0L, "Mario 64", "Nintendo", "3D Platform", "ESRB", "September 29, 1996",

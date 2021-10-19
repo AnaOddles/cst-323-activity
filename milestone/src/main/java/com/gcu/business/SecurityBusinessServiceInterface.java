@@ -1,23 +1,14 @@
 package com.gcu.business;
-
 import com.gcu.model.LoginModel;
-import com.gcu.model.RegisterModel;
+
 
 /**
- * Interface for Security Business Service
+ * Interface that specifies functionality for user authentication and security
  * @author anasanchez
  *
  */
 public interface SecurityBusinessServiceInterface {
-	//Methods 
-	
-	/**
-	 * Method to register user 
-	 * 
-	 * @param registerUser (RegisterMode) that captures user registration attributes
-	 * 
-	 */
-	void register(RegisterModel registerUser);
+	//Methods
 	
 	/**
 	 * Method to login in user 
@@ -26,7 +17,7 @@ public interface SecurityBusinessServiceInterface {
 	 * 
 	 * @return boolean if user successfully logins in, false otherwise
 	 */
-	boolean login(LoginModel loginModel);
+	boolean authenticateUser(LoginModel loginModel);
 	
 	/**
 	 * Method for spring bean upon init

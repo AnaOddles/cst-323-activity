@@ -15,8 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.gcu.business.SecurityBusinessServiceInterface;
+import com.gcu.business.UserBusinessServiceInterface;
 import com.gcu.model.RegisterModel;
 
 /**
@@ -31,7 +30,7 @@ import com.gcu.model.RegisterModel;
 public class RegisterController {
 	//Inject security service using dependency injection
 	@Autowired
-	private SecurityBusinessServiceInterface securityService;
+	private UserBusinessServiceInterface userService;
 	
 	/**
 	 * Return a view along with a model attribute Mappings - Invokes using '/' in
@@ -75,7 +74,7 @@ public class RegisterController {
 			return "register";
 		}
 
-		securityService.register(registerModel);
+		userService.register(registerModel);
 		// Set model attribute title
 		model.addAttribute("title", "Register Success");
 		// Set model attribute welcome with registerModel information

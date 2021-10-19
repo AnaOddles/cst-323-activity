@@ -5,7 +5,11 @@ import org.springframework.stereotype.Service;
 import com.gcu.model.LoginModel;
 import com.gcu.model.RegisterModel;
 import com.gcu.model.UserList;
-
+/**
+ * Business Service used for user security and authentication
+ * @author anasanchez
+ *
+ */
 //Using @Service to create concrete instance of security service as a spring bean
 @Service
 public class SecurityBusinessService implements SecurityBusinessServiceInterface {
@@ -13,9 +17,8 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	/**
 	 * Method to register user 
 	 * 
-	 * @param RegisterModel
+	 * @param register (RegisterMode) that captures user registration attributes
 	 * 
-	 * @return void
 	 */
 	@Override
 	public void register(RegisterModel register) {
@@ -36,9 +39,8 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	/**
 	 * Method to login in user 
 	 * 
-	 * @param LoginModel
-	 * 
-	 * @return boolean if user successfully logins in
+	 * @param login LoginModel that captures user login credentials
+	 * @return boolean if user successfully logins in, false otherwise
 	 */
 	@Override
 	public boolean login(LoginModel login) {
@@ -55,9 +57,6 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	/**
 	 * Method for spring bean upon init
 	 * 
-	 * @param RegisterModel
-	 * 
-	 * @return void
 	 */
 	@Override
 	public void init() {
@@ -68,9 +67,6 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	/**
 	 * Method for spring bean upon destroy
 	 * 
-	 * @param RegisterModel
-	 * 
-	 * @return void
 	 */
 	@Override
 	public void destroy() {

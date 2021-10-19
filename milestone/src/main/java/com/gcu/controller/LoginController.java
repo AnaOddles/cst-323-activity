@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.business.SecurityBusinessServiceInterface;
 import com.gcu.model.LoginModel;
+import com.gcu.model.ProductList;
 import com.gcu.model.ProductModel;
 
 /**
@@ -33,8 +34,8 @@ import com.gcu.model.ProductModel;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-	
-	//Inject security service using dependency injection
+
+	// Inject security service using dependency injection
 	@Autowired
 	private SecurityBusinessServiceInterface securityService;
 
@@ -84,6 +85,9 @@ public class LoginController {
 		// Validation error check passed -> no validation errors
 
 		// Check login attempt calling loginUser helper method
+
+		// User Credentials are valid
+		if (securityService.login(loginModel)) { // used for testing
 		// User Credentials are validß
 		if (securityService.authenticateUser(loginModel)) {
 			// Create some Products and add list
@@ -96,10 +100,12 @@ public class LoginController {
 					"The game takes place in the year 2552, where humanity is "
 							+ "locked in a war with the alien Covenant. Players control Noble Six, a member of an elite"
 							+ " supersoldier squad, when the human world known as Reach falls under Covenant attack."));
-
 			// Set model attribute title
-			model.addAttribute("title", "Your Games");
-			model.addAttribute("products", products);
+			model.addAttribute("title", "Products");
+			// Set model attribute for products
+			model.addAttribute("products", ProductList.productList);
+			// Set model attribute for productModel to instance of a new productModel
+			model.addAttribute("productModel", new ProductModel());
 			System.out.println("User logged in: " + loginModel.getUsername());
 			return "products";
 		}
@@ -112,6 +118,5 @@ public class LoginController {
 		System.out.println("Login failed for: " + loginModel.getUsername());
 		return "loginFailure";
 	}
-
 
 }

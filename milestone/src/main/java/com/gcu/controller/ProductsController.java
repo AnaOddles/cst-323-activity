@@ -22,8 +22,8 @@ import com.gcu.model.ProductList;
 import com.gcu.model.ProductModel;
 
 /**
- * Products Controller class - all URI's related to products page belong here
- * @author anasanchez
+ * Product Controller class - all URI's related to Product page belogn here 
+ * @author melzs
  *
  */
 
@@ -35,8 +35,6 @@ public class ProductsController {
 	// Inject product service using dependency injection
 	@Autowired
 	private ProductBusinessServiceInterface productService; 
-	
-	/*
 
 	/**
 	 * Return a view name along with a model attribute Mapping - Invokes using '/'
@@ -57,7 +55,16 @@ public class ProductsController {
 		model.addAttribute("productModel", new ProductModel());
 		return "products";
 	}
-
+	
+	/**
+	 * Return a view name along with a model attribute Mappings - Invokes using
+	 * '/createProduct' in URI after controller mapping '/products/createProduct'
+	 * 
+	 * @param productModel
+	 * @param bindingResult
+	 * @param model
+	 * @return String for view forwarded to
+	 */
 	@PostMapping("/createProduct")
 	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) {
 		// Set model attribute products

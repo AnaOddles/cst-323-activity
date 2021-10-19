@@ -6,9 +6,6 @@
 
 package com.gcu.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.business.SecurityBusinessServiceInterface;
 import com.gcu.model.LoginModel;
-import com.gcu.model.ProductList;
-import com.gcu.model.ProductModel;
 
 /**
  * Login Controller class - all URI's related to login page belong here

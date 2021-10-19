@@ -26,7 +26,7 @@ public class LoginModel {
 	private long id;
 
 	/**
-	 * Username of user
+	 * Username of user (String)
 	 */
 	@NotBlank(message = "Username cannot be blank")
 	@NotNull(message = "Username is a required field")
@@ -34,7 +34,7 @@ public class LoginModel {
 	private String username;
 
 	/**
-	 * Password of user
+	 * Password of user (String)
 	 */
 	@NotBlank(message = "Password cannot be blank")
 	@NotNull(message = "Password is a required field")

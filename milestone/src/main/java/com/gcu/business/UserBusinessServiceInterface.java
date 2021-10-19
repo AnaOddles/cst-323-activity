@@ -1,3 +1,9 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// October 24, 2021
+// This is our own work
+
 package com.gcu.business;
 import com.gcu.model.RegisterModel;
 

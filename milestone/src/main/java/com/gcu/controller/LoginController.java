@@ -23,6 +23,11 @@ import com.gcu.business.SecurityBusinessServiceInterface;
 import com.gcu.model.LoginModel;
 import com.gcu.model.ProductModel;
 
+/**
+ * Login Controller class - all URI's related to login page belong here
+ * @author anasanchez
+ *
+ */
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /login in URI - root
 @Controller
@@ -33,13 +38,13 @@ public class LoginController {
 	@Autowired
 	private SecurityBusinessServiceInterface securityService;
 
-	/*
+	/**
 	 * Return a view name along with a model attribute Mappings - Invokes using '/'
 	 * in URI after controller mapping '/login/'
 	 * 
-	 * @param Model
+	 * @param model (Model) from login view 
 	 * 
-	 * @return String
+	 * @return String for view forwarded to
 	 * 
 	 */
 	@GetMapping("/")
@@ -52,11 +57,13 @@ public class LoginController {
 		return "login";
 	}
 
-	/*
+	/**
 	 * Return a view name along with a model attribute Mappings - Invokes using
 	 * '/doLogin' in URI after controller mapping '/login/doLogin'
 	 * 
-	 * @param (valid) LoginModel, BindingResult, Model
+	 * @param loginModel (LoginModel)
+	 * @param bindingResult (BindingResult), 
+	 * @param model (Model)
 	 * 
 	 * @return String
 	 * 

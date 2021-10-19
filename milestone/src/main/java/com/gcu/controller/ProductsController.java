@@ -11,19 +11,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Products Controller class - all URI's related to products page belong here
+ * @author anasanchez
+ *
+ */
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /products in URI - root
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
 
-	/*
+	/**
 	 * Return a view name along with a model attribute Mapping - Invokes using '/'
 	 * in URI after controller mapping '/products/'
 	 * 
-	 * @param Model
+	 * @param model (Model) from products view
 	 * 
-	 * @return String
+	 * @return String for view forwarded to
 	 * 
 	 */
 	@GetMapping("/")

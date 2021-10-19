@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 public class ProductModel {
 
 	//Properties 
-	
 	private long id; 
 	
 	//@NotBlank(message = "Name cannot be blank")

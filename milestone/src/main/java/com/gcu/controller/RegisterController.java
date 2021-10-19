@@ -15,10 +15,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.gcu.business.SecurityBusinessServiceInterface;
+import com.gcu.business.UserBusinessServiceInterface;
 import com.gcu.model.RegisterModel;
 
+/**
+ * Login Controller class - all URI's related to Register page belong here
+ * @author anasanchez
+ *
+ */
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /register in URI - root
 @Controller
@@ -26,15 +30,15 @@ import com.gcu.model.RegisterModel;
 public class RegisterController {
 	//Inject security service using dependency injection
 	@Autowired
-	private SecurityBusinessServiceInterface securityService;
+	private UserBusinessServiceInterface userService;
 	
-	/*
+	/**
 	 * Return a view along with a model attribute Mappings - Invokes using '/' in
 	 * URI after controller mapping '/register/'
 	 * 
-	 * @param Model
+	 * @param model (Model) from register view
 	 * 
-	 * @return String
+	 * @return String as view forwarded to
 	 * 
 	 */
 	@GetMapping("/")
@@ -47,13 +51,15 @@ public class RegisterController {
 		return "register";
 	}
 
-	/*
+	/**
 	 * Return a view name along with a model attribute Mappings - Invokes using
 	 * '/doRegister' in URI after controller mapping '/register/doRegister'
 	 * 
-	 * @param (valid) RegisterModel, BindingResult, Model
+	 * @param registerModel (RegisterModel)
+	 * @param bindingResult (BindingResult)
+	 * @param model (Model)
 	 * 
-	 * @return String
+	 * @return String as view forwarded to
 	 * 
 	 */
 	@PostMapping("/doRegister")
@@ -68,7 +74,7 @@ public class RegisterController {
 			return "register";
 		}
 
-		securityService.register(registerModel);
+		userService.register(registerModel);
 		// Set model attribute title
 		model.addAttribute("title", "Register Success");
 		// Set model attribute welcome with registerModel information

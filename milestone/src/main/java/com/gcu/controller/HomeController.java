@@ -11,19 +11,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Home Controller class - all URI's related to home page belong here
+ * @author anasanchez
+ *
+ */
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using / in URI - root
 @Controller
 @RequestMapping("/")
 public class HomeController {
 
-	/*
+	/**
 	 * Return a view name along with a model attribute Mapping - Invokes using '/'
 	 * or '' in URI - root
 	 * 
-	 * @param Model
+	 * @param model (Model)
 	 * 
-	 * @return String
+	 * @return String for view
 	 * 
 	 */
 	@GetMapping("/")

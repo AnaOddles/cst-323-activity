@@ -24,6 +24,11 @@ import com.gcu.model.LoginModel;
 import com.gcu.model.ProductList;
 import com.gcu.model.ProductModel;
 
+/**
+ * Login Controller class - all URI's related to login page belong here
+ * @author anasanchez
+ *
+ */
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /login in URI - root
 @Controller
@@ -34,13 +39,13 @@ public class LoginController {
 	@Autowired
 	private SecurityBusinessServiceInterface securityService;
 
-	/*
+	/**
 	 * Return a view name along with a model attribute Mappings - Invokes using '/'
 	 * in URI after controller mapping '/login/'
 	 * 
-	 * @param Model
+	 * @param model (Model) from login view 
 	 * 
-	 * @return String
+	 * @return String for view forwarded to
 	 * 
 	 */
 	@GetMapping("/")
@@ -53,11 +58,13 @@ public class LoginController {
 		return "login";
 	}
 
-	/*
+	/**
 	 * Return a view name along with a model attribute Mappings - Invokes using
 	 * '/doLogin' in URI after controller mapping '/login/doLogin'
 	 * 
-	 * @param (valid) LoginModel, BindingResult, Model
+	 * @param loginModel (LoginModel)
+	 * @param bindingResult (BindingResult), 
+	 * @param model (Model)
 	 * 
 	 * @return String
 	 * 
@@ -78,9 +85,21 @@ public class LoginController {
 		// Validation error check passed -> no validation errors
 
 		// Check login attempt calling loginUser helper method
-		// User Credentials are valid
-		if (securityService.login(loginModel) || loginModel.getUsername().equals("melanie")) { // used for testing
 
+		// User Credentials are valid
+		if (securityService.login(loginModel)) { // used for testing
+		// User Credentials are validß
+		if (securityService.authenticateUser(loginModel)) {
+			// Create some Products and add list
+			List<ProductModel> products = new ArrayList<ProductModel>();
+			products.add(new ProductModel(0L, "Mario 64", "Nintendo", "3D Platform", "ESRB", "September 29, 1996",
+					"mario-64.jpeg", " Since its release, Super Mario 64 has "
+							+ "been widely acclaimed as one of the greatest and most important games of all time"));
+			products.add(new ProductModel(1L, "Halo: Reach", "Microsoft Game Studios", "First-person shooter", "N/A",
+					"September 14, 2010", "halo-reach.jpeg",
+					"The game takes place in the year 2552, where humanity is "
+							+ "locked in a war with the alien Covenant. Players control Noble Six, a member of an elite"
+							+ " supersoldier squad, when the human world known as Reach falls under Covenant attack."));
 			// Set model attribute title
 			model.addAttribute("title", "Products");
 			// Set model attribute for products

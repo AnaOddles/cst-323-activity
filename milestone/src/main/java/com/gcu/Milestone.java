@@ -9,9 +9,17 @@ package com.gcu;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Main application entry point
+ * @author anasanchez
+ *
+ */
 @SpringBootApplication
 public class Milestone {
-	// Method to run program
+	/**
+	 * Method to run program
+	 * @param args (String[] args)
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Milestone.class, args);
 	}

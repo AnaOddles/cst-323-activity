@@ -8,8 +8,14 @@ package com.gcu.model;
 
 import java.util.HashMap;
 
-// User List Class
+/**
+ * Object Model used to capture list of users logged in
+ * @author anasanchez
+ *
+ */
 public class UserList {
-	// Global Variable -> HashMap with UserList with Integer (ID) and LoginModel (VALUE) 
+	/**
+	 * Global Variable -> HashMap with UserList with Integer (ID) and LoginModel (VALUE) 
+	 */
 	public static HashMap<Integer, LoginModel> userList = new HashMap<Integer, LoginModel>();
 }

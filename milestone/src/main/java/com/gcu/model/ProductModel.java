@@ -14,6 +14,12 @@ public class ProductModel {
 	@NotBlank(message = "Name cannot be blank")
 	@NotNull()
 	@Size(max = 30, message = "Name must be less than 20 characters")
+	//Properties 
+	private long id; 
+	
+	@NotBlank(message = "Name cannot be blank")
+	@NotNull()
+	@Size(max = 30, message="Name must be less than 20 characters")
 	private String name;
 
 	@NotBlank(message = "Publisher cannot be blank")

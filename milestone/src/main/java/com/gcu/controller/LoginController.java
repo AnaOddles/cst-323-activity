@@ -85,10 +85,8 @@ public class LoginController {
 		// Validation error check passed -> no validation errors
 
 		// Check login attempt calling loginUser helper method
-
+		
 		// User Credentials are valid
-		if (securityService.login(loginModel)) { // used for testing
-		// User Credentials are validß
 		if (securityService.authenticateUser(loginModel)) {
 			// Create some Products and add list
 			List<ProductModel> products = new ArrayList<ProductModel>();

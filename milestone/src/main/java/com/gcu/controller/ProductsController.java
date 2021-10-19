@@ -6,10 +6,17 @@
 
 package com.gcu.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gcu.model.ProductList;
+import com.gcu.model.ProductModel;
 
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /products in URI - root
@@ -29,7 +36,27 @@ public class ProductsController {
 	@GetMapping("/")
 	public String displayProducts(Model model) {
 		// Add model attribute Title
+		// Set model attribute products
 		model.addAttribute("title", "Products");
+		model.addAttribute("products", ProductList.productList);
+		// Set model attribute productModel to instance of a new productModel
+		model.addAttribute("productModel", new ProductModel());
 		return "products";
 	}
+
+	@PostMapping("/createProduct")
+	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) {
+		// Set model attribute products
+		model.addAttribute("title", "Products");
+		model.addAttribute("products", ProductList.productList);
+		
+		if (bindingResult.hasErrors()) {
+			return "products";
+		}
+		
+		// Set model attribute productModel to instance of a new productModel
+		model.addAttribute("productModel", new ProductModel());
+		return "products";
+	}
+
 }

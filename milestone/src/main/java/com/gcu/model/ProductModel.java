@@ -1,62 +1,68 @@
 package com.gcu.model;
 
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class ProductModel {
 
-	//Properties 
-	
-	private long id; 
-	
-	//@NotBlank(message = "Name cannot be blank")
-	//@NotNull(message = "Name is a required field")
-	//@Size(max = 30, message="Name must be less than 20 characters")
+	// Properties
+
+	private long id;
+
+	@NotBlank(message = "Name cannot be blank")
+	@NotNull()
+	@Size(max = 30, message = "Name must be less than 20 characters")
 	private String name;
-	
-	//@NotBlank(message = "Publisher cannot be blank")
-	//@NotNull(message = "Publisher is a required field")
-	//@Size(max = 30, message="Publisher must be less than 20 characters")
+
+	@NotBlank(message = "Publisher cannot be blank")
+	@NotNull()
+	@Size(max = 30, message = "Publisher must be less than 20 characters")
 	private String publisher;
-	
-	//@NotBlank(message = "Genre cannot be blank")
-	//@NotNull(message = "Genre is a required field")
-	//@Size(max = 15, message="Name must be less than 15 characters")
+
+	@NotBlank(message = "Genre cannot be blank")
+	@NotNull()
+	@Size(max = 15, message = "Name must be less than 15 characters")
 	private String genre;
-	
-	//@NotBlank(message = "Rating cannot be blank")
-	//@NotNull(message = "Rating is a required field")
-	//@Size(max = 15, message="Rating must be less than 15 characters")
+
+	@NotBlank(message = "Rating cannot be blank")
+	@NotNull()
+	@Size(max = 15, message = "Rating must be less than 15 characters")
 	private String rating;
-	
-	//@NotBlank(message = "Release Date cannot be blank")
-	//@NotNull(message = "Release Date is a required field")
-	//@Size(max = 15, message="Release Date must be less than 15 characters")
+
+	@NotBlank(message = "Release Date cannot be blank")
+	@NotNull()
+	@Size(max = 15, message = "Release Date must be less than 15 characters")
 	private String releaseDate;
-	
+
+	@NotBlank(message = "Image cannot be blank")
+	@NotNull
 	private String image;
-	
-	//@NotBlank(message = "Description cannot be blank")
-	//@NotNull(message = "Description is a required field")
-	//@Size(max = 100, message="Description must be less than 100 characters")
+
+	@NotBlank(message = "Description cannot be blank")
+	@NotNull()
+	@Size(max = 150, message = "Description must be less than 150 characters")
 	private String description;
-	
-	//Non-default constructor 
-	public ProductModel(Long id, String name, String publiser, String genre, String
-			rating, String releaseDate, String image, String description) {
-		super();
+
+	// Non-default constructor
+	public ProductModel(Long id, String name, String publiser, String genre, String rating, String releaseDate,
+			String image, String description) {
 		this.id = id;
 		this.name = name;
-		this.publisher = publiser; 
+		this.publisher = publiser;
 		this.genre = genre;
 		this.releaseDate = releaseDate;
 		this.image = image;
 		this.description = description;
 	}
-	
 
-	//Getter and Setters 
+	// Default Constructor
+	public ProductModel() {
+
+	}
+
+	// Getter and Setters
 	public long getId() {
 		return id;
 	}
@@ -120,10 +126,12 @@ public class ProductModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
 
-	
-	
+	@Override
+	public String toString() {
+		return "ProductModel:\n id: " + id + ",\n name: " + name + ",\n publisher: " + publisher + ",\n genre: " + genre
+				+ ",\n rating: " + rating + ",\n releaseDate: " + releaseDate + ",\n image: " + image
+				+ ",\n description: " + description;
+	}
+
 }

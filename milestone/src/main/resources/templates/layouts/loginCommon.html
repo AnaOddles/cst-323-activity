@@ -30,7 +30,9 @@ This is our own work
       				</li>
       				<li class="nav-item">
        					<a th:classappend="${#httpServletRequest.getRequestURI() == '/products/' || 
-       					#httpServletRequest.getRequestURI() == '/login/doLogin' ? 'active':''}"class="nav-item nav-link" href="/products/">Products</a>
+       					#httpServletRequest.getRequestURI() == '/login/doLogin' ||
+       					#httpServletRequest.getRequestURI() == '/products/createProduct'
+       					 ? 'active':''}"class="nav-item nav-link" href="/products/">Products</a>
       				</li>
            			
     			</ul>

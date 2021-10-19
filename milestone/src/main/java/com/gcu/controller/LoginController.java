@@ -1,13 +1,10 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// October 3, 2021
+// October 24, 2021
 // This is our own work
 
 package com.gcu.controller;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -21,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.business.SecurityBusinessServiceInterface;
 import com.gcu.model.LoginModel;
-import com.gcu.model.ProductList;
-import com.gcu.model.ProductModel;
 
 /**
  * Login Controller class - all URI's related to login page belong here

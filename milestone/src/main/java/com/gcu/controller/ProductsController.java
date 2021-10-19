@@ -51,6 +51,7 @@ public class ProductsController {
 		model.addAttribute("products", ProductList.productList);
 		
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("error", "error");
 			return "products";
 		}
 		

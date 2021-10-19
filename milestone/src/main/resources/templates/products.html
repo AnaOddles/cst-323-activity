@@ -19,6 +19,11 @@ This is our own work
 			Create Product
 		</button>
 
+		<!-- Error -->
+		<div th:if="${error == 'error'}">
+			<small style="color:red">Error Creating Product</small>
+		</div>
+
 		<!-- Modal -->
 		<div class="modal fade" id="createProduct" tabindex="-1" role="dialog" aria-labelledby="createProduct"
 			aria-hidden="true">

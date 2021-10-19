@@ -93,6 +93,7 @@ public class LoginController {
 			
 			// Set model attribute title
 			model.addAttribute("title", "Login Success");
+			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
 			System.out.println("User logged in: " + loginModel.getUsername());
 			return "loginSuccess";
 		}

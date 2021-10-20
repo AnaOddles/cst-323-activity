@@ -88,6 +88,7 @@ public class LoginController {
 			
 			// Set model attribute title
 			model.addAttribute("title", "Login Success");
+			// Set model attribute userLoginMessage
 			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
 			System.out.println("User logged in: " + loginModel.getUsername());
 			return "loginSuccess";
@@ -97,6 +98,7 @@ public class LoginController {
 
 		// Set model attribute title
 		model.addAttribute("title", "Login Failure");
+		// Set model attribute userLoginmessage
 		model.addAttribute("userLoginMessage", "Uh oh... please try again " + loginModel.getUsername());
 		System.out.println("Login failed for: " + loginModel.getUsername());
 		return "loginFailure";

@@ -28,12 +28,13 @@ public interface SecurityBusinessServiceInterface {
 	/**
 	 * Method for spring bean upon init
 	 * 
+	 * @return void
 	 */
 	void init();
-	
 	/**
 	 * Method for spring bean upon destroy
 	 * 
+	 * @return void
 	 */
 	void destroy();
 }

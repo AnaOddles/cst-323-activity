@@ -26,10 +26,14 @@ public interface ProductBusinessServiceInterface {
 	void createProduct(ProductModel productModel);
 	/**
 	 * Method for spring bean upon init
+	 * 
+	 * @return void
 	 */
 	void init();
 	/**
 	 * Method for spring bean upon destroy
+	 * 
+	 * @return void
 	 */
 	void destroy();
 }

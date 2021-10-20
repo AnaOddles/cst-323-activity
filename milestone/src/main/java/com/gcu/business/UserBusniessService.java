@@ -23,6 +23,7 @@ public class UserBusniessService implements UserBusinessServiceInterface {
 	 * 
 	 * @param register (RegisterMode) that captures user registration attributes
 	 * 
+	 * @return void
 	 */
 	@Override
 	public void register(RegisterModel register) {
@@ -38,6 +39,28 @@ public class UserBusniessService implements UserBusinessServiceInterface {
 		// Print the ID and UserModel to the console
 		System.out.println("Id: " + register.getLoginUser());
 		System.out.println("UserModel Registered: " + register.toString());
+	}
+	
+	/**
+	 * Method for spring bean upon init
+	 * 
+	 * @return void
+	 */
+	@Override
+	public void init() {
+		System.out.println("In the UserBusinessService.init()");
+		
+	}
+
+	/**
+	 * Method for spring bean upon destroy
+	 * 
+	 * @return void
+	 */
+	@Override
+	public void destroy() {
+		System.out.println("In the UserBusinessService.destroy()");
+		
 	}
 
 }

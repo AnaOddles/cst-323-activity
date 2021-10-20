@@ -20,6 +20,21 @@ public interface UserBusinessServiceInterface {
 	 * 
 	 * @param registerUser (RegisterMode) that captures user registration attributes
 	 * 
+	 * @return void
+	 * 
 	 */
 	void register(RegisterModel registerUser);
+	
+	/**
+	 * Method for spring bean upon init
+	 * 
+	 * @return void
+	 */
+	void init();
+	/**
+	 * Method for spring bean upon destroy
+	 * 
+	 * @return void
+	 */
+	void destroy();
 }

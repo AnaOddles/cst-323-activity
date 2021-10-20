@@ -38,6 +38,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	
 	/**
 	 * Method for spring bean upon init
+	 * @return void
 	 */
 	@Override
 	public void init() {
@@ -46,6 +47,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	
 	/**
 	 * Method for spring bean upon destroy
+	 * @return void
 	 */
 	@Override
 	public void destroy() {

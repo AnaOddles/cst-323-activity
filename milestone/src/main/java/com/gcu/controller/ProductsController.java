@@ -71,7 +71,9 @@ public class ProductsController {
 		model.addAttribute("title", "Products");
 		model.addAttribute("products", ProductList.productList);
 		
+		// Check to see if validation passes
 		if (bindingResult.hasErrors()) {
+			// Add error model attribute
 			model.addAttribute("error", "error");
 			return "products";
 		}

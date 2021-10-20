@@ -40,6 +40,7 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	/**
 	 * Method for spring bean upon init
 	 * 
+	 * @return void
 	 */
 	@Override
 	public void init() {
@@ -50,6 +51,7 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	/**
 	 * Method for spring bean upon destroy
 	 * 
+	 * @return void
 	 */
 	@Override
 	public void destroy() {

@@ -55,31 +55,31 @@ This is our own work
 							</div>
 				
 							<div class="form-group">
-								<label for="age">Genre</label>
+								<label for="genre">Genre</label>
 								<input type="text" class="form-control" th:field="*{genre}" aria-describedby="genre" placeholder="Genre">
 								<small style="color:red" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">Genre</small>
 							</div>
 				
 				
 							<div class="form-group">
-								<label for="email">Rating</label>
+								<label for="rating">Rating</label>
 								<input type="text" class="form-control" th:field="*{rating}" aria-describedby="rating" placeholder="Rating">
 								<small style="color:red" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">Rating</small>
 							</div>
 							
 							<div class="form-group">
-								<label for="phoneNum">Release Date</label>
+								<label for="releaseDate">Release Date</label>
 								<input type="date" class="form-control" th:field="*{releaseDate}" aria-describedby="releaseDate" placeholder="Release Date">
 								<small style="color:red" th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}">Release Date</small>
 							</div>
 				
 							<div class="form-group">
-								<label for="username">Image</label>
+								<label for="image">Image</label>
 								<input type="text" class="form-control" th:field="*{image}" aria-describedby="image" placeholder="Image URL">
 								<small style="color:red" th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Image</small>
 							</div>
 							<div class="form-group">
-								<label for="password">Description</label>
+								<label for="desc">Description</label>
 								<textarea rows="4" cols="50" class="form-control" th:field="*{description}" placeholder="Description"></textarea>
 								<small style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description</small>
 							</div>

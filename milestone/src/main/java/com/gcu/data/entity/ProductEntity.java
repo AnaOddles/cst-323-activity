@@ -1,7 +1,5 @@
 package com.gcu.data.entity;
 
-import java.sql.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -24,21 +22,21 @@ public class ProductEntity {
 
 	String rating;
 
-	Date releaseDate;
+	String platform;
 
 	String image;
 
 	String description;
 
 	public ProductEntity(Long id, Long userId, String name, String publisher, String genre, String rating,
-			Date releaseDate, String image, String description) {
+			String platform, String image, String description) {
 		this.id = id;
 		this.userId = userId;
 		this.name = name;
 		this.publisher = publisher;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = releaseDate;
+		this.platform = platform;
 		this.image = image;
 		this.description = description;
 	}
@@ -46,9 +44,9 @@ public class ProductEntity {
 	public ProductEntity() {
 
 	}
-
+	
 	// GETTERS AND SETTERS
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -97,12 +95,12 @@ public class ProductEntity {
 		this.rating = rating;
 	}
 
-	public Date getReleaseDate() {
-		return releaseDate;
+	public String getPlatform() {
+		return platform;
 	}
 
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 
 	public String getImage() {
@@ -120,5 +118,6 @@ public class ProductEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 }

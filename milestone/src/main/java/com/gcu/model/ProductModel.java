@@ -6,8 +6,6 @@
 
 package com.gcu.model;
 
-import java.sql.Date;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -63,9 +61,12 @@ public class ProductModel {
 	private String rating;
 
 	/**
-	 * Release Date of Product (String)
+	 * Platform of Product (String)
 	 */
-	private Date releaseDate;
+	@NotBlank(message = "Platform cannot be blank")
+	@NotNull()
+	@Size(max = 30, message = "Platform must be less than 30 characters")
+	private String platform;
 
 	/**
 	 * Image (URL) of Product (String)
@@ -86,24 +87,37 @@ public class ProductModel {
 
 	// Default Constructor
 
+	/**
+	 * Default Constructor
+	 */
+	public ProductModel() {
+
+	}
+
+	/**
+	 * Constructor with Parameters
+	 * 
+	 * @param id
+	 * @param userId
+	 * @param name
+	 * @param publisher
+	 * @param genre
+	 * @param rating
+	 * @param platform
+	 * @param image
+	 * @param description
+	 */
 	public ProductModel(long id, long userId, String name, String publisher, String genre, String rating,
-			Date releaseDate, String image, String description) {
+			String platform, String image, String description) {
 		this.id = id;
 		this.userId = userId;
 		this.name = name;
 		this.publisher = publisher;
 		this.genre = genre;
 		this.rating = rating;
-		this.releaseDate = releaseDate;
+		this.platform = platform;
 		this.image = image;
 		this.description = description;
-	}
-
-	/**
-	 * Default Constructor
-	 */
-	public ProductModel() {
-
 	}
 
 	// GETTERS AND SETTERS
@@ -216,21 +230,21 @@ public class ProductModel {
 	}
 
 	/**
-	 * Access to product release date
+	 * Access to product platform
 	 * 
-	 * @return releaseDate (string)
+	 * @return platform (string)
 	 */
-	public Date getReleaseDate() {
-		return releaseDate;
+	public String getPlatform() {
+		return platform;
 	}
 
 	/**
-	 * Access to set product release date
+	 * Access to set product platform
 	 * 
-	 * @param releaseDate
+	 * @param platform
 	 */
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 
 	/**
@@ -275,7 +289,7 @@ public class ProductModel {
 	@Override
 	public String toString() {
 		return "ProductModel:\n id: " + id + ",\n userId: " + userId + ",\n name: " + name + ",\n publisher: "
-				+ publisher + ",\n genre: " + genre + ",\n rating: " + rating + ",\n releaseDate: " + releaseDate
+				+ publisher + ",\n genre: " + genre + ",\n rating: " + rating + ",\n platform: " + platform
 				+ ",\n image: " + image + ",\n description: " + description;
 	}
 

@@ -68,9 +68,9 @@ This is our own work
 							</div>
 							
 							<div class="form-group">
-								<label for="releaseDate">Release Date</label>
-								<input type="date" class="form-control" th:field="*{releaseDate}" aria-describedby="releaseDate" placeholder="Release Date">
-								<small style="color:red" th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}">Release Date</small>
+								<label for="platform">Platform</label>
+								<input type="text" class="form-control" th:field="*{platform}" aria-describedby="platform" placeholder="platform">
+								<small style="color:red" th:if="${#fields.hasErrors('platform')}" th:errors="*{platform}">Platform</small>
 							</div>
 				
 							<div class="form-group">
@@ -111,11 +111,11 @@ This is our own work
 									on the card title and make up the bulk of the card's content.</p>
 	
 								<p th:inline="text">
-									<b>Creator:</b> [[${user.username}]]
+									<b>Creator:</b> [[${user.username}]] <br />
 									<b>Publisher:</b> [[${product.publisher}]] <br />
 									<b>Genre:</b> [[${product.genre}]] <br />
 									<b>Rating:</b> [[${product.rating}]] <br />
-									<b>Release Date:</b> [[${product.releaseDate}]] <br />
+									<b>Platform:</b> [[${product.platform}]] <br />
 								</p>
 	
 								<a href="#" class="btn btn-warning">Edit</a>

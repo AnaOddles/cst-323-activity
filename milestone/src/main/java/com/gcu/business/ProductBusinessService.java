@@ -41,7 +41,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		
 		return service.create(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
-				productModel.getReleaseDate(), productModel.getImage(), productModel.getDescription()));
+				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));
 
 	}
 
@@ -53,7 +53,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
 		for (ProductEntity entity : productsEntity) {
 			productsDomain.add(new ProductModel(entity.getId(), entity.getUserId(), entity.getName(),
-					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getReleaseDate(),
+					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),
 					entity.getImage(), entity.getDescription()));
 		}
 

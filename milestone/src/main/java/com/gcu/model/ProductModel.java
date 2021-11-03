@@ -26,6 +26,8 @@ public class ProductModel {
 	 */
 	private long id;
 
+	private long userId;
+
 	/**
 	 * Name of Product (String)
 	 */
@@ -82,30 +84,22 @@ public class ProductModel {
 	private String description;
 
 	// Non-default constructor
-	/**
-	 * Constructor with properties
-	 * 
-	 * @param id
-	 * @param name
-	 * @param publiser
-	 * @param genre
-	 * @param rating
-	 * @param releaseDate
-	 * @param image
-	 * @param description
-	 */
-	public ProductModel(Long id, String name, String publiser, String genre, String rating, String releaseDate,
-			String image, String description) {
+
+	// Default Constructor
+
+	public ProductModel(long id, long userId, String name, String publisher, String genre, String rating,
+			String releaseDate, String image, String description) {
 		this.id = id;
+		this.userId = userId;
 		this.name = name;
-		this.publisher = publiser;
+		this.publisher = publisher;
 		this.genre = genre;
+		this.rating = rating;
 		this.releaseDate = releaseDate;
 		this.image = image;
 		this.description = description;
 	}
 
-	// Default Constructor
 	/**
 	 * Default Constructor
 	 */
@@ -130,6 +124,24 @@ public class ProductModel {
 	 */
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * Access to product UserId
+	 * 
+	 * @return userId (long)
+	 */
+	public long getUserId() {
+		return userId;
+	}
+
+	/**
+	 * Access to set product UserId
+	 * 
+	 * @param userId
+	 */
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	/**
@@ -263,9 +275,9 @@ public class ProductModel {
 	 */
 	@Override
 	public String toString() {
-		return "ProductModel:\n id: " + id + ",\n name: " + name + ",\n publisher: " + publisher + ",\n genre: " + genre
-				+ ",\n rating: " + rating + ",\n releaseDate: " + releaseDate + ",\n image: " + image
-				+ ",\n description: " + description;
+		return "ProductModel:\n id: " + id + ",\n userId: " + userId + ",\n name: " + name + ",\n publisher: "
+				+ publisher + ",\n genre: " + genre + ",\n rating: " + rating + ",\n releaseDate: " + releaseDate
+				+ ",\n image: " + image + ",\n description: " + description;
 	}
 
 }

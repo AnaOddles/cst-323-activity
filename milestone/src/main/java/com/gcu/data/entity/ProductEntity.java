@@ -35,9 +35,10 @@ public class ProductEntity {
 	@Column("description")
 	String description;
 
-	public ProductEntity(Long id, String name, String publisher, String genre, String rating, String releaseDate,
-			String image, String description) {
+	public ProductEntity(Long id, Long userId, String name, String publisher, String genre, String rating,
+			String releaseDate, String image, String description) {
 		this.id = id;
+		this.userId = userId;
 		this.name = name;
 		this.publisher = publisher;
 		this.genre = genre;
@@ -59,6 +60,14 @@ public class ProductEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {

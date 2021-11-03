@@ -13,7 +13,7 @@ public class ProductEntity {
 	@Column("userId")
 	Long userId;
 
-	@Column("name")
+	@Column("gameName")
 	String name;
 
 	@Column("publisher")

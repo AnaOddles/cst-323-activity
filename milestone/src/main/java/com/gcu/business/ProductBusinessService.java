@@ -6,6 +6,7 @@
 
 package com.gcu.business;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.gcu.data.ProductsDataService;
 import com.gcu.data.entity.ProductEntity;
+import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
 
 /**
@@ -36,9 +38,13 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public boolean createProduct(ProductModel productModel) {
-		return service.create(new ProductEntity(productModel.getId(), productModel.getUserId(), productModel.getName(),
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String date = simpleDateFormat.format(productModel.getReleaseDate());
+		System.out.println("Release Date: " + date);
+		return service.create(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
-				productModel.getReleaseDate(), productModel.getImage(), productModel.getDescription()));
+				date, productModel.getImage(), productModel.getDescription()));
 
 	}
 

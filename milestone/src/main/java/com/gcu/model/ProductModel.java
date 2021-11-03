@@ -26,6 +26,8 @@ public class ProductModel {
 	 */
 	private long id;
 
+	private long userId;
+
 	/**
 	 * Name of Product (String)
 	 */
@@ -59,12 +61,12 @@ public class ProductModel {
 	private String rating;
 
 	/**
-	 * Release Date of Product (String)
+	 * Platform of Product (String)
 	 */
-	@NotBlank(message = "Release Date cannot be blank")
+	@NotBlank(message = "Platform cannot be blank")
 	@NotNull()
-	@Size(max = 15, message = "Release Date must be less than 15 characters")
-	private String releaseDate;
+	@Size(max = 30, message = "Platform must be less than 30 characters")
+	private String platform;
 
 	/**
 	 * Image (URL) of Product (String)
@@ -82,35 +84,40 @@ public class ProductModel {
 	private String description;
 
 	// Non-default constructor
-	/**
-	 * Constructor with properties
-	 * 
-	 * @param id
-	 * @param name
-	 * @param publiser
-	 * @param genre
-	 * @param rating
-	 * @param releaseDate
-	 * @param image
-	 * @param description
-	 */
-	public ProductModel(Long id, String name, String publiser, String genre, String rating, String releaseDate,
-			String image, String description) {
-		this.id = id;
-		this.name = name;
-		this.publisher = publiser;
-		this.genre = genre;
-		this.releaseDate = releaseDate;
-		this.image = image;
-		this.description = description;
-	}
 
 	// Default Constructor
+
 	/**
 	 * Default Constructor
 	 */
 	public ProductModel() {
 
+	}
+
+	/**
+	 * Constructor with Parameters
+	 * 
+	 * @param id
+	 * @param userId
+	 * @param name
+	 * @param publisher
+	 * @param genre
+	 * @param rating
+	 * @param platform
+	 * @param image
+	 * @param description
+	 */
+	public ProductModel(long id, long userId, String name, String publisher, String genre, String rating,
+			String platform, String image, String description) {
+		this.id = id;
+		this.userId = userId;
+		this.name = name;
+		this.publisher = publisher;
+		this.genre = genre;
+		this.rating = rating;
+		this.platform = platform;
+		this.image = image;
+		this.description = description;
 	}
 
 	// GETTERS AND SETTERS
@@ -130,6 +137,24 @@ public class ProductModel {
 	 */
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	/**
+	 * Access to product UserId
+	 * 
+	 * @return userId (long)
+	 */
+	public long getUserId() {
+		return userId;
+	}
+
+	/**
+	 * Access to set product UserId
+	 * 
+	 * @param userId
+	 */
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	/**
@@ -205,21 +230,21 @@ public class ProductModel {
 	}
 
 	/**
-	 * Access to product release date
+	 * Access to product platform
 	 * 
-	 * @return releaseDate (string)
+	 * @return platform (string)
 	 */
-	public String getReleaseDate() {
-		return releaseDate;
+	public String getPlatform() {
+		return platform;
 	}
 
 	/**
-	 * Access to set product release date
+	 * Access to set product platform
 	 * 
-	 * @param releaseDate
+	 * @param platform
 	 */
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 
 	/**
@@ -263,9 +288,9 @@ public class ProductModel {
 	 */
 	@Override
 	public String toString() {
-		return "ProductModel:\n id: " + id + ",\n name: " + name + ",\n publisher: " + publisher + ",\n genre: " + genre
-				+ ",\n rating: " + rating + ",\n releaseDate: " + releaseDate + ",\n image: " + image
-				+ ",\n description: " + description;
+		return "ProductModel:\n id: " + id + ",\n userId: " + userId + ",\n name: " + name + ",\n publisher: "
+				+ publisher + ",\n genre: " + genre + ",\n rating: " + rating + ",\n platform: " + platform
+				+ ",\n image: " + image + ",\n description: " + description;
 	}
 
 }

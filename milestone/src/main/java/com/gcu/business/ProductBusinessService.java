@@ -6,18 +6,30 @@
 
 package com.gcu.business;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gcu.model.ProductList;
+import com.gcu.data.ProductsDataService;
+import com.gcu.data.entity.ProductEntity;
+import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
+
 /**
  * Product Business Service used for product operations
+ * 
  * @author melzs
  *
  */
 @Service
 public class ProductBusinessService implements ProductBusinessServiceInterface {
-	
+
+	@Autowired
+	ProductsDataService service;
+
 	/**
 	 * Method to create a product
 	 * 
@@ -25,28 +37,43 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 * @return void
 	 */
 	@Override
-	public void createProduct(ProductModel productModel) {
-		// Retrieve ID by looking at the size of the ArrayList
-		int id = ProductList.productList.size();
-		// Set product model equal to ID
-		productModel.setId(id);
-		// Add product to ArrayList
-		ProductList.productList.add(productModel);
-		// Print that the ProductModel was created
-		System.out.println("ProductModel Registered: " + productModel.toString());
+	public boolean createProduct(ProductModel productModel) {
+		System.out.println("Create Product Business Service");
+		return service.create(new ProductEntity(LoggedInUser.user.getId(), productModel.getName(),
+				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
+				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));
+
 	}
-	
+
+	@Override
+	public List<ProductModel> getProducts() {
+		// TODO Auto-generated method stub
+		List<ProductEntity> productsEntity = service.findAll();
+
+		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
+		for (ProductEntity entity : productsEntity) {
+			productsDomain.add(new ProductModel(entity.getId(), entity.getUserId(), entity.getName(),
+					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),
+					entity.getImage(), entity.getDescription()));
+		}
+
+		return productsDomain;
+
+	}
+
 	/**
 	 * Method for spring bean upon init
+	 * 
 	 * @return void
 	 */
 	@Override
 	public void init() {
 		System.out.println("Initialize ProductBusinessService");
 	}
-	
+
 	/**
 	 * Method for spring bean upon destroy
+	 * 
 	 * @return void
 	 */
 	@Override

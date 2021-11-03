@@ -6,6 +6,8 @@
 
 package com.gcu.business;
 
+import java.util.List;
+
 import com.gcu.model.ProductModel;
 
 /**
@@ -21,9 +23,11 @@ public interface ProductBusinessServiceInterface {
 	 * 
 	 * @param productModel
 	 * 
-	 * @return void
+	 * @return boolean
 	 */
-	void createProduct(ProductModel productModel);
+	boolean createProduct(ProductModel productModel);
+	
+	List<ProductModel> getProducts();
 	/**
 	 * Method for spring bean upon init
 	 * 

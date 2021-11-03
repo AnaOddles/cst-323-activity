@@ -70,13 +70,13 @@ public class MyProductsController {
 	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) {
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
-		model.addAttribute("products", productService.getProducts());
 		model.addAttribute("user", LoggedInUser.user);
 		
 		// Check to see if validation passes
 		if (bindingResult.hasErrors()) {
 			// Add error model attribute
 			model.addAttribute("error", "error");
+			model.addAttribute("products", productService.getProducts());
 			return "myProducts";
 		}
 		
@@ -85,6 +85,7 @@ public class MyProductsController {
 		
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
+		model.addAttribute("products", productService.getProducts());
 		return "myProducts";
 	}
 

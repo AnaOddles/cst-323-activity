@@ -27,6 +27,18 @@ public class ProductEntity {
 	String image;
 
 	String description;
+	
+	public ProductEntity(Long userId, String name, String publisher, String genre, String rating,
+			String platform, String image, String description) {
+		this.userId = userId;
+		this.name = name;
+		this.publisher = publisher;
+		this.genre = genre;
+		this.rating = rating;
+		this.platform = platform;
+		this.image = image;
+		this.description = description;
+	}
 
 	public ProductEntity(Long id, Long userId, String name, String publisher, String genre, String rating,
 			String platform, String image, String description) {

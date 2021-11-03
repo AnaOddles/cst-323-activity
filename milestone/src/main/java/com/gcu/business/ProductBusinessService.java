@@ -38,13 +38,10 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public boolean createProduct(ProductModel productModel) {
-		String pattern = "yyyy-MM-dd";
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-		String date = simpleDateFormat.format(productModel.getReleaseDate());
-		System.out.println("Release Date: " + date);
+		
 		return service.create(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
-				date, productModel.getImage(), productModel.getDescription()));
+				productModel.getReleaseDate(), productModel.getImage(), productModel.getDescription()));
 
 	}
 

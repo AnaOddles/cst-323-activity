@@ -38,7 +38,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public boolean createProduct(ProductModel productModel) {
-		
+		System.out.println("Create Product Business Service");
 		return service.create(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));

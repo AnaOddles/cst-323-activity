@@ -119,5 +119,14 @@ public class ProductEntity {
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductEntity:\n id: " + id + ",\n userId: " + userId + ",\n name: " + name + ",\n publisher: "
+				+ publisher + ",\n genre: " + genre + ",\n rating: " + rating + ",\n platform: " + platform
+				+ ",\n image: " + image + ",\n description: " + description;
+	}
+	
+	
+
 
 }

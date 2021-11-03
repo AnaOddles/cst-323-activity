@@ -42,6 +42,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	@Override
 	// TODO Exception handling
 	public boolean create(ProductEntity product) {
+		System.out.println("Product Data Service Create - Product: " + product.toString());
 		// TODO Auto-generated method stub
 		try {
 			this.productsRepository.save(product);

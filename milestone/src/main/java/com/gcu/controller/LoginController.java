@@ -90,8 +90,9 @@ public class LoginController {
 			// Set model attribute userLoginMessage
 			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
 			// Set ID of logged in user
-			LoggedInUser.LoggedInId = loginModel.getId();
-			System.out.println("Logged In User ID: " + LoggedInUser.LoggedInId);
+			LoggedInUser.user = loginModel;
+			System.out.println("Logged In User ID: " + LoggedInUser.user);
+			model.addAttribute("user", LoggedInUser.user);
 			System.out.println("User logged in: " + loginModel.getUsername());
 			return "loginSuccess";
 		}

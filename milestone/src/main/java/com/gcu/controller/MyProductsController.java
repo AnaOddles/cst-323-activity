@@ -50,7 +50,7 @@ public class MyProductsController {
 		// Add model attribute Title
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
-		model.addAttribute("products", ProductList.productList);
+		model.addAttribute("products", productService.getProducts());
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
 		return "myProducts";
@@ -69,7 +69,7 @@ public class MyProductsController {
 	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) {
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
-		model.addAttribute("products", ProductList.productList);
+		model.addAttribute("products", productService.getProducts());
 		
 		// Check to see if validation passes
 		if (bindingResult.hasErrors()) {

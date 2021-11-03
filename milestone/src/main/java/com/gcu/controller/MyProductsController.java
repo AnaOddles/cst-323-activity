@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.gcu.business.ProductBusinessServiceInterface;
-import com.gcu.model.ProductList;
 import com.gcu.model.ProductModel;
 
 /**

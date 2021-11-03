@@ -11,7 +11,7 @@ public class ProductEntity {
 	@Id
 	Long id;
 
-	@MappedCollection(idColumn = "userId")
+	@Column("userId")
 	Long userId;
 
 	@Column("name")

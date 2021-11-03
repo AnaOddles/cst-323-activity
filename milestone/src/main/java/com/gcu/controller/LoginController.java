@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gcu.business.SecurityBusinessServiceInterface;
+import com.gcu.model.LoggedInUser;
 import com.gcu.model.LoginModel;
 
 /**
@@ -82,14 +83,15 @@ public class LoginController {
 		// Check login attempt calling loginUser helper method
 		
 		// User Credentials are valid
-		if (securityService.authenticateUser(loginModel) 
-				|| loginModel.getUsername().equals("melanie")) // username works for login
-		{
-			
+		if (securityService.authenticateUser(loginModel))
+		{	
 			// Set model attribute title
 			model.addAttribute("title", "Login Success");
 			// Set model attribute userLoginMessage
 			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
+			// Set ID of logged in user
+			LoggedInUser.LoggedInId = loginModel.getId();
+			System.out.println("Logged In User ID: " + LoggedInUser.LoggedInId);
 			System.out.println("User logged in: " + loginModel.getUsername());
 			return "loginSuccess";
 		}

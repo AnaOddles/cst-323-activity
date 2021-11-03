@@ -18,22 +18,16 @@ public class ProductEntity {
 	@Column("gameName")
 	String name;
 
-	@Column("publisher")
 	String publisher;
 
-	@Column("genre")
 	String genre;
 
-	@Column("rating")
 	String rating;
 
-	@Column("releaseDate")
 	Date releaseDate;
 
-	@Column("image")
 	String image;
 
-	@Column("description")
 	String description;
 
 	public ProductEntity(Long id, Long userId, String name, String publisher, String genre, String rating,

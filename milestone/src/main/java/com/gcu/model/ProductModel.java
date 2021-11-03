@@ -6,6 +6,8 @@
 
 package com.gcu.model;
 
+import java.sql.Date;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -63,10 +65,7 @@ public class ProductModel {
 	/**
 	 * Release Date of Product (String)
 	 */
-	@NotBlank(message = "Release Date cannot be blank")
-	@NotNull()
-	@Size(max = 15, message = "Release Date must be less than 15 characters")
-	private String releaseDate;
+	private Date releaseDate;
 
 	/**
 	 * Image (URL) of Product (String)
@@ -88,7 +87,7 @@ public class ProductModel {
 	// Default Constructor
 
 	public ProductModel(long id, long userId, String name, String publisher, String genre, String rating,
-			String releaseDate, String image, String description) {
+			Date releaseDate, String image, String description) {
 		this.id = id;
 		this.userId = userId;
 		this.name = name;
@@ -221,7 +220,7 @@ public class ProductModel {
 	 * 
 	 * @return releaseDate (string)
 	 */
-	public String getReleaseDate() {
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
 
@@ -230,7 +229,7 @@ public class ProductModel {
 	 * 
 	 * @param releaseDate
 	 */
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 

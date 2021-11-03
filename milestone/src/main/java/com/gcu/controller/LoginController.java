@@ -89,8 +89,13 @@ public class LoginController {
 			model.addAttribute("title", "Login Success");
 			// Set model attribute userLoginMessage
 			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
+			
 			// Set ID of logged in user
+			loginModel.setId(1); // Required for FK
+			
 			LoggedInUser.user = loginModel;
+			
+			
 			System.out.println("Logged In User ID: " + LoggedInUser.user);
 			model.addAttribute("user", LoggedInUser.user);
 			System.out.println("User logged in: " + loginModel.getUsername());

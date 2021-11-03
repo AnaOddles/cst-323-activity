@@ -104,7 +104,7 @@ This is our own work
 
 					<div class="col">
 						<div class="card" style="width: 18rem;">
-							<img class="card-img-top" img th:src="${product.image}" alt="Image of ${product.name}]">
+							<img class="card-img-top" img th:src="${product.image}" alt="Image URL Invalid">
 							<div class="card-body">
 								<h5 class="card-title" th:text="${product.name}">Card title</h5>
 								<p class="card-text" th:text="${product.description}">Some quick example text to build
@@ -117,7 +117,6 @@ This is our own work
 									<b>Release Date:</b> [[${product.releaseDate}]] <br />
 								</p>
 	
-								<a href="#" class="btn btn-info">Details</a>
 								<a href="#" class="btn btn-warning">Edit</a>
 								<a href="#" class="btn btn-danger">Delete</a>
 									

@@ -30,8 +30,8 @@ import com.gcu.model.ProductModel;
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /products in URI - root
 @Controller
-@RequestMapping("/products")
-public class ProductsController {
+@RequestMapping("/myproducts")
+public class MyProductsController {
 	// Inject product service using dependency injection
 	@Autowired
 	private ProductBusinessServiceInterface productService; 
@@ -49,11 +49,11 @@ public class ProductsController {
 	public String displayProducts(Model model) {
 		// Add model attribute Title
 		// Set model attribute products
-		model.addAttribute("title", "Products");
+		model.addAttribute("title", "My Products");
 		model.addAttribute("products", ProductList.productList);
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
-		return "products";
+		return "myProducts";
 	}
 	
 	/**
@@ -68,14 +68,14 @@ public class ProductsController {
 	@PostMapping("/createProduct")
 	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) {
 		// Set model attribute products
-		model.addAttribute("title", "Products");
+		model.addAttribute("title", "My Products");
 		model.addAttribute("products", ProductList.productList);
 		
 		// Check to see if validation passes
 		if (bindingResult.hasErrors()) {
 			// Add error model attribute
 			model.addAttribute("error", "error");
-			return "products";
+			return "myProducts";
 		}
 		
 		// Add product to ArrayList utilizing service
@@ -83,7 +83,7 @@ public class ProductsController {
 		
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
-		return "products";
+		return "myProducts";
 	}
 
 }

@@ -60,6 +60,23 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		return productsDomain;
 
 	}
+	
+
+	@Override
+	public List<ProductModel> getMyProducts() {
+		// TODO Auto-generated method stub
+		List<ProductEntity> productsEntity = service.findByUserId(LoggedInUser.user.getId());
+
+		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
+		for (ProductEntity entity : productsEntity) {
+			productsDomain.add(new ProductModel(entity.getId(), entity.getUserId(), entity.getName(),
+					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),
+					entity.getImage(), entity.getDescription()));
+		}
+
+		return productsDomain;
+	}
+
 
 	/**
 	 * Method for spring bean upon init

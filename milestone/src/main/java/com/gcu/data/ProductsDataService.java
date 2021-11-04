@@ -53,6 +53,24 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 		return true;
 	}
 
+	public List<ProductEntity> findByUserId(long userId) {
+		// TODO Auto-generated method stub
+		List<ProductEntity> products = new ArrayList<ProductEntity>();
+
+		try {
+			Iterable<ProductEntity> productsIterable = productsRepository.findByUserId(userId);
+
+			products = new ArrayList<ProductEntity>();
+			productsIterable.forEach(products::add);
+
+		} catch (Exception e) {
+			// TODO Exception handling
+			e.printStackTrace();
+		}
+
+		return products;
+	}
+
 	@Override
 	public ProductEntity findById(int id) {
 		// TODO Auto-generated method stub

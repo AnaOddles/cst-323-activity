@@ -28,6 +28,8 @@ public interface ProductBusinessServiceInterface {
 	boolean createProduct(ProductModel productModel);
 	
 	List<ProductModel> getProducts();
+	
+	List<ProductModel> getMyProducts();
 	/**
 	 * Method for spring bean upon init
 	 * 

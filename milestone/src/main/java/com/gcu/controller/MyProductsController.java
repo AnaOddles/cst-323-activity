@@ -50,7 +50,7 @@ public class MyProductsController {
 		// Add model attribute Title
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
-		model.addAttribute("products", productService.getProducts());
+		model.addAttribute("products", productService.getMyProducts());
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
 		model.addAttribute("user", LoggedInUser.user);
@@ -76,7 +76,7 @@ public class MyProductsController {
 		if (bindingResult.hasErrors()) {
 			// Add error model attribute
 			model.addAttribute("error", "error");
-			model.addAttribute("products", productService.getProducts());
+			model.addAttribute("products", productService.getMyProducts());
 			return "myProducts";
 		}
 		
@@ -85,7 +85,7 @@ public class MyProductsController {
 		
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
-		model.addAttribute("products", productService.getProducts());
+		model.addAttribute("products", productService.getMyProducts());
 		return "myProducts";
 	}
 

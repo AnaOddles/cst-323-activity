@@ -4,39 +4,60 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("users")
-public class ProfileEntity {
+@Table("profiles")
+public class UserEntity {
 
 	@Id
+	Long profileId;
+
+	@Column("userId")
 	Long userId;
 
-	@Column("username")
-	String username;
-
-	@Column("password")
-	String password;
+	@Column("firstname")
+	String firstname;
+	
+	@Column("lastname")
+	String lastname;
+	
+	@Column("age")
+	int age; 
+	
+	@Column("email")
+	String email;
 
 	//Default Constructor 
-	public ProfileEntity() {
+	public UserEntity() {
 		
 	}
 
-	//Non-default constructor 
-	public ProfileEntity(Long userId, String username, String password) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-	}
-
 	//Non-default constructor
-	public ProfileEntity(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
+	public UserEntity(Long profileId, Long userId, String firstname, String lastname, int age, String email) {
+		this.profileId = profileId;
+		this.userId = userId;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.age = age;
+		this.email = email;
+	}
+	
+	//Non-default constructor 
+	public UserEntity(Long userId, String firstname, String lastname, int age, String email) {
+		this.userId = userId;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.age = age;
+		this.email = email;
+	}
+	
+	//Getter and Setters
+	public Long getProfileId() {
+		return profileId;
 	}
 
-	//Getter and Setters
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -45,26 +66,43 @@ public class ProfileEntity {
 		this.userId = userId;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "LoginEntity [userId=" + userId + ", username=" + username + ", password=" + password + "]";
+		return "UserEntity [profileId=" + profileId + ", userId=" + userId + ", firstname=" + firstname + ", lastname="
+				+ lastname + ", age=" + age + ", email=" + email + "]";
 	}
-
+	
 }
 

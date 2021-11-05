@@ -1,90 +1,77 @@
 package com.gcu.data;
 
-import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.gcu.data.entity.ProductEntity;
-import com.gcu.data.repository.ProductsRepository;
+import org.springframework.transaction.annotation.Transactional;
+import com.gcu.data.entity.ProfileEntity;
+import com.gcu.data.entity.UserEntity;
+import com.gcu.data.repository.ProfilesRepository;
+import com.gcu.data.repository.UsersRepository;
+import com.gcu.util.DatabaseException;
 
 @Service
-public class UsersDataService implements DataAccessInterface<ProductEntity> {
+public class UsersDataService implements DataAccessInterface<UserEntity>{
 
 	@Autowired
-	private ProductsRepository productsRepository;
+	private UsersRepository usersRepository;
+	private ProfilesRepository profilesRepository; 
 
-	public UsersDataService(ProductsRepository productsRepository) {
-		this.productsRepository = productsRepository;
+	public UsersDataService(UsersRepository usersRepository,ProfilesRepository profilesRepository) {
+		this.usersRepository = usersRepository;
+		this.profilesRepository = profilesRepository;
+	}
+
+	@Transactional 
+	public int create(UserEntity user, ProfileEntity profile) throws DatabaseException {
+		System.out.println("User Data Service Create - User: " + user.toString());
+		System.out.println("Profile Data Service Create - Profile: " + profile.toString());
+
+		try {
+			
+			if(this.usersRepository.findByUsername(user.getUsername()) != null){
+				System.out.println("User already exists");
+				return 1;
+			}
+			user = this.usersRepository.save(user);
+			profile.setUserId(user.getUserId());
+			System.out.println(profile.getUserId());
+			this.profilesRepository.save(profile); 
+			
+		} catch (Exception e) {
+			//e.printStackTrace();
+			throw new DatabaseException(e, "Database exception");
+		}
+		return 0;
 	}
 
 	@Override
-	public List<ProductEntity> findAll() {
-		// TODO Auto-generated method stub
-		List<ProductEntity> products = new ArrayList<ProductEntity>();
-
-		try {
-			Iterable<ProductEntity> productsIterable = productsRepository.findAll();
-
-			products = new ArrayList<ProductEntity>();
-			productsIterable.forEach(products::add);
-
-		} catch (Exception e) {
-			// TODO Exception handling
-			e.printStackTrace();
-		}
-
-		return products;
-
-	}
-
-	@Override
-	// TODO Exception handling
-	public boolean create(ProductEntity product) {
-		System.out.println("Product Data Service Create - Product: " + product.toString());
-		// TODO Auto-generated method stub
-		try {
-			this.productsRepository.save(product);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-
-	public List<ProductEntity> findByUserId(long userId) {
-		// TODO Auto-generated method stub
-		List<ProductEntity> products = new ArrayList<ProductEntity>();
-
-		try {
-			Iterable<ProductEntity> productsIterable = productsRepository.findByUserId(userId);
-
-			products = new ArrayList<ProductEntity>();
-			productsIterable.forEach(products::add);
-
-		} catch (Exception e) {
-			// TODO Exception handling
-			e.printStackTrace();
-		}
-
-		return products;
-	}
-
-	@Override
-	public ProductEntity findById(int id) {
+	public List<UserEntity> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean update(ProductEntity t) {
+	public Optional<UserEntity> findById(int id) {
+		System.out.println("Grabbing a user with id: " + id);
+		return usersRepository.findById((long) id);
+	}
+
+	@Override
+	public boolean update(UserEntity t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(ProductEntity t) {
+	public boolean delete(UserEntity t) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean create(UserEntity t) {
 		// TODO Auto-generated method stub
 		return false;
 	}

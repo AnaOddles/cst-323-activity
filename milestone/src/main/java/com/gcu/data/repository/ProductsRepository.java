@@ -7,7 +7,7 @@ import com.gcu.data.entity.ProductEntity;
 
 public interface ProductsRepository extends CrudRepository<ProductEntity, Long> {
 	
-	@Query("SELECT * FROM games WHERE userId = :userId")
+	@Query("SELECT * FROM games WHERE user_Id = :userId")
 	Iterable<ProductEntity> findByUserId(long userId);
 	
 }

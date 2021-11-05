@@ -5,12 +5,12 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("profiles")
-public class UserEntity {
+public class ProfileEntity {
 
 	@Id
 	Long profileId;
 
-	@Column("userId")
+	@Column("user_Id")
 	Long userId;
 
 	@Column("firstname")
@@ -26,12 +26,12 @@ public class UserEntity {
 	String email;
 
 	//Default Constructor 
-	public UserEntity() {
+	public ProfileEntity() {
 		
 	}
 
 	//Non-default constructor
-	public UserEntity(Long profileId, Long userId, String firstname, String lastname, int age, String email) {
+	public ProfileEntity(Long profileId, Long userId, String firstname, String lastname, int age, String email) {
 		this.profileId = profileId;
 		this.userId = userId;
 		this.firstname = firstname;
@@ -41,7 +41,7 @@ public class UserEntity {
 	}
 	
 	//Non-default constructor 
-	public UserEntity(Long userId, String firstname, String lastname, int age, String email) {
+	public ProfileEntity(Long userId, String firstname, String lastname, int age, String email) {
 		this.userId = userId;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -49,7 +49,18 @@ public class UserEntity {
 		this.email = email;
 	}
 	
+	public ProfileEntity(String firstname, String lastname, int age, String email) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.age = age;
+		this.email = email;
+	}
+
 	//Getter and Setters
+	public String getFirstname() {
+		return firstname;
+	}
+
 	public Long getProfileId() {
 		return profileId;
 	}
@@ -64,10 +75,6 @@ public class UserEntity {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
-
-	public String getFirstname() {
-		return firstname;
 	}
 
 	public void setFirstname(String firstname) {
@@ -100,7 +107,7 @@ public class UserEntity {
 
 	@Override
 	public String toString() {
-		return "UserEntity [profileId=" + profileId + ", userId=" + userId + ", firstname=" + firstname + ", lastname="
+		return "ProfileEntity [profileId=" + profileId + ", userId=" + userId + ", firstname=" + firstname + ", lastname="
 				+ lastname + ", age=" + age + ", email=" + email + "]";
 	}
 	

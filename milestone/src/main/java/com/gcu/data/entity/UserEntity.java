@@ -5,7 +5,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table("users")
-public class ProfileEntity {
+public class UserEntity {
 
 	@Id
 	Long userId;
@@ -17,21 +17,19 @@ public class ProfileEntity {
 	String password;
 
 	//Default Constructor 
-	public ProfileEntity() {
+	public UserEntity() {
 		
 	}
 
 	//Non-default constructor 
-	public ProfileEntity(Long userId, String username, String password) {
-		super();
+	public UserEntity(Long userId, String username, String password) {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
 	}
 
 	//Non-default constructor
-	public ProfileEntity(String username, String password) {
-		super();
+	public UserEntity(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}

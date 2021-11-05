@@ -12,11 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.gcu.business.UserBusinessServiceInterface;
 import com.gcu.model.RegisterModel;
+import com.gcu.util.DatabaseException;
+import com.gcu.util.UserAlreadyExistsException;
 
 /**
  * Login Controller class - all URI's related to Register page belong here
@@ -60,10 +63,12 @@ public class RegisterController {
 	 * @param model (Model)
 	 * 
 	 * @return String as view forwarded to
+	 * @throws UserAlreadyExistsException 
+	 * @throws DatabaseException 
 	 * 
 	 */
 	@PostMapping("/doRegister")
-	public String doRegister(@Valid RegisterModel registerModel, BindingResult bindingResult, Model model) {
+	public String doRegister(@Valid RegisterModel registerModel, BindingResult bindingResult, Model model) throws UserAlreadyExistsException, DatabaseException {
 
 		// Check for validation errors
 		if (bindingResult.hasErrors()) {
@@ -73,8 +78,17 @@ public class RegisterController {
 			// Return register view to show register page -> also outputs error messages
 			return "register";
 		}
+		
+		try {
+			userService.register(registerModel);
+		}catch(UserAlreadyExistsException e){
+			model.addAttribute("title", "Register");
+        	bindingResult.rejectValue("loginUser.username", "error.login", "username already taken");
 
-		userService.register(registerModel);
+			return "register";
+		}
+
+		
 		// Set model attribute title
 		model.addAttribute("title", "Register Success");
 		// Set model attribute welcome with registerModel information

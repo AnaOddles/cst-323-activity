@@ -36,12 +36,14 @@ public class UserBusniessService implements UserBusinessServiceInterface {
 	public boolean register(RegisterModel register) throws UserAlreadyExistsException, DatabaseException {
 		
 		System.out.println("Registering a user to the database!");
+		//Call service to register user 
 		int registeredUser = service.create(new UserEntity(register.getLoginUser().getUsername(), register.getLoginUser().getPassword())
 				,new ProfileEntity(register.getFirstName(), register.getLastName(), register.getAge(),
 							register.getEmail()));
-		
 	
+		//If user already exists throw exception
 		if(registeredUser == 1) {
+			System.out.println("User already exists!");
 			throw new UserAlreadyExistsException();
 		}
 		return true;

@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gcu.business.ProductBusinessServiceInterface;
 import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
+import com.gcu.util.DatabaseException;
+import com.gcu.util.ProductAlreadyExistsException;
 
 /**
- * Product Controller class - all URI's related to Product page belogn here 
+ * Product Controller class - all URI's related to Product page belong here 
  * @author melzs
  *
  */
@@ -43,10 +45,11 @@ public class MyProductsController {
 	 * @param model (Model) from products view
 	 * 
 	 * @return String for view forwarded to
+	 * @throws DatabaseException 
 	 * 
 	 */
 	@GetMapping("/")
-	public String displayProducts(Model model) {
+	public String displayProducts(Model model) throws DatabaseException {
 		// Add model attribute Title
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
@@ -65,9 +68,11 @@ public class MyProductsController {
 	 * @param bindingResult
 	 * @param model
 	 * @return String for view forwarded to
+	 * @throws DatabaseException 
+	 * @throws ProductAlreadyExistsException 
 	 */
 	@PostMapping("/createProduct")
-	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) {
+	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) throws DatabaseException, ProductAlreadyExistsException {
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
 		model.addAttribute("user", LoggedInUser.user);
@@ -80,11 +85,21 @@ public class MyProductsController {
 			return "myProducts";
 		}
 		
-		// Add product to ArrayList utilizing service
-		productService.createProduct(productModel);
-		
+		try {
+			//Call service to create product
+			productService.createProduct(productModel);
+		}catch (ProductAlreadyExistsException e){
+			
+			//If products already exists - return back to product form with validation binding result error 
+			model.addAttribute("error", "error");
+        	bindingResult.rejectValue("name", "error.product", "game already exists");
+        	model.addAttribute("products", productService.getMyProducts());
+        	return "myProducts";
+		}
+	
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
+		//Set model attribute products to a new list of products in database
 		model.addAttribute("products", productService.getMyProducts());
 		return "myProducts";
 	}

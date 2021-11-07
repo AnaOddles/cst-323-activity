@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import com.gcu.data.entity.UserEntity;
+import com.gcu.util.DatabaseException;
 
 public interface DataAccessInterface<T> {
-	public List<T> findAll();
+	public List<T> findAll() throws DatabaseException;
 
-	public Optional<UserEntity> findById(int id);
+	public Optional<T> findById(int id);
 	// TODO Update from boolean for exception handling
-	public boolean create(T t);
+	public boolean create(T t) throws DatabaseException;
 
 	public boolean update(T t);
 

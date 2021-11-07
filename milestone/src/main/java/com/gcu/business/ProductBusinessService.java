@@ -17,6 +17,9 @@ import com.gcu.data.ProductsDataService;
 import com.gcu.data.entity.ProductEntity;
 import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
+import com.gcu.util.DatabaseException;
+import com.gcu.util.ProductAlreadyExistsException;
+import com.gcu.util.UserAlreadyExistsException;
 
 /**
  * Product Business Service used for product operations
@@ -35,21 +38,39 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 * 
 	 * @param product ProductModel that captures product properties
 	 * @return void
+	 * @throws DatabaseException 
+	 * @throws ProductAlreadyExistsException 
 	 */
 	@Override
-	public boolean createProduct(ProductModel productModel) {
+	public boolean createProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException {
 		System.out.println("Create Product Business Service");
-		return service.create(new ProductEntity(LoggedInUser.user.getId(), productModel.getName(),
+		
+		//Call the products data service to create product
+		
+		//If A product already exists - throw exception
+		if(!service.create(new ProductEntity(LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
-				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));
-
+				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()))){
+			System.out.println("Cannot create duplicate product");
+			throw new ProductAlreadyExistsException();
+		}
+			
+		return true;
 	}
 
+	/**
+	 * Method to get all products for all users
+	 * 
+	 * @return void
+	 * @throws DatabaseException 
+	 */
 	@Override
-	public List<ProductModel> getProducts() {
-		// TODO Auto-generated method stub
+	public List<ProductModel> getProducts() throws DatabaseException {
+		
+		//Call service to grab all products
 		List<ProductEntity> productsEntity = service.findAll();
 
+		//Prepping to return a list of product model for view
 		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
 		for (ProductEntity entity : productsEntity) {
 			productsDomain.add(new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),
@@ -61,12 +82,18 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 	}
 	
-
+	/**
+	 * Method to get all products for logged in user
+	 * @return void
+	 * @throws DatabaseException 
+	 */
 	@Override
-	public List<ProductModel> getMyProducts() {
-		// TODO Auto-generated method stub
+	public List<ProductModel> getMyProducts() throws DatabaseException {		
+		
+		//Call service to bran all products for logged in user
 		List<ProductEntity> productsEntity = service.findByUserId(LoggedInUser.user.getId());
 
+		//Prepping to return a list of products models for view
 		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
 		for (ProductEntity entity : productsEntity) {
 			productsDomain.add(new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),

@@ -10,4 +10,5 @@ public interface ProductsRepository extends CrudRepository<ProductEntity, Long> 
 	@Query("SELECT * FROM games WHERE user_Id = :userId")
 	Iterable<ProductEntity> findByUserId(long userId);
 	
+	ProductEntity findByName(String name);
 }

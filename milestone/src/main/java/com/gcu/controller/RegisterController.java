@@ -79,12 +79,13 @@ public class RegisterController {
 			return "register";
 		}
 		
+		//Call service to register 
 		try {
 			userService.register(registerModel);
 		}catch(UserAlreadyExistsException e){
+			//If username used already exists - return back to register view
 			model.addAttribute("title", "Register");
         	bindingResult.rejectValue("loginUser.username", "error.login", "username already taken");
-
 			return "register";
 		}
 

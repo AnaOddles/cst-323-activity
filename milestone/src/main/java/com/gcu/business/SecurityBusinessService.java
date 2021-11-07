@@ -39,8 +39,10 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	@Override
 	public boolean authenticateUser(LoginModel login) throws InvalidCredentialsException, DatabaseException {
 			
+		//Call Service to authenticate user - returns User Entity from databawe
 		UserEntity user = service.findByCredentials(new UserEntity(login.getUsername(), login.getPassword()));
 		
+		//If User is returned - log in user - else - throw invalid credentials exception
 		if(user != null)
 		{
 			// Set ID of logged in user

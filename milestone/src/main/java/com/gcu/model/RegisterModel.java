@@ -42,7 +42,7 @@ public class RegisterModel {
 	private String lastName;
 
 	/**
-	 * Age of user (String)
+	 * Age of user (int)
 	 */
 	@Min(value = 5, message = "Age cannot be less than 5")
 	@Max(value = 150, message = "Age cannot be greater than 150")

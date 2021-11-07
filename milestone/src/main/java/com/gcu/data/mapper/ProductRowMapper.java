@@ -14,7 +14,10 @@ import org.springframework.jdbc.core.RowMapper;
 import com.gcu.data.entity.ProductEntity;
 
 public class ProductRowMapper implements RowMapper<ProductEntity> {
-
+	/**
+	 * Product Entity Map Row
+	 * @return productEntity
+	 */
 	@Override
 	public ProductEntity mapRow(ResultSet rs, int rowNumber) throws SQLException {
 		return new ProductEntity(rs.getLong("game_Id"), rs.getLong("user_Id"), rs.getString("name"),

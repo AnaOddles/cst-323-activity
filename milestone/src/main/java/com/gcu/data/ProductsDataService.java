@@ -2,11 +2,13 @@ package com.gcu.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gcu.data.entity.ProductEntity;
+import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.ProductsRepository;
 
 @Service
@@ -72,7 +74,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	}
 
 	@Override
-	public ProductEntity findById(int id) {
+	public Optional<UserEntity> findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

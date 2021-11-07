@@ -4,10 +4,9 @@ import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.gcu.data.entity.ProductEntity;
+import com.gcu.data.entity.ProfileEntity;
+import com.gcu.data.entity.UserEntity;
 
-public interface ProductsRepository extends CrudRepository<ProductEntity, Long> {
-	
-	@Query("SELECT * FROM games WHERE user_Id = :userId")
-	Iterable<ProductEntity> findByUserId(long userId);
+public interface ProfilesRepository extends CrudRepository<ProfileEntity, Long> {
 	
 }

@@ -52,7 +52,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
 		for (ProductEntity entity : productsEntity) {
-			productsDomain.add(new ProductModel(entity.getId(), entity.getUserId(), entity.getName(),
+			productsDomain.add(new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),
 					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),
 					entity.getImage(), entity.getDescription()));
 		}
@@ -69,7 +69,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
 		for (ProductEntity entity : productsEntity) {
-			productsDomain.add(new ProductModel(entity.getId(), entity.getUserId(), entity.getName(),
+			productsDomain.add(new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),
 					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),
 					entity.getImage(), entity.getDescription()));
 		}

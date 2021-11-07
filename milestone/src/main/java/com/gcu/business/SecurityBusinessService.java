@@ -6,10 +6,16 @@
 
 package com.gcu.business;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gcu.data.SecurityDataService;
+import com.gcu.data.entity.UserEntity;
+import com.gcu.model.LoggedInUser;
 import com.gcu.model.LoginModel;
-import com.gcu.model.UserList;
+import com.gcu.util.DatabaseException;
+import com.gcu.util.InvalidCredentialsException;
+import com.gcu.util.UserAlreadyExistsException;
 /**
  * Business Service used for user security and authentication
  * @author anasanchez
@@ -18,24 +24,38 @@ import com.gcu.model.UserList;
 //Using @Service to create concrete instance of security service as a spring bean
 @Service
 public class SecurityBusinessService implements SecurityBusinessServiceInterface {
-
+	
+	@Autowired
+	SecurityDataService service;
 	/**
 	 * Method to login in user 
 	 * 
 	 * @param login LoginModel that captures user login credentials
 	 * @return boolean if user successfully logins in, false otherwise
+	 * @throws InvalidCredentialsException 
+	 * @throws DatabaseException 
+	 * @throws UserAlreadyExistsException 
 	 */
 	@Override
-	public boolean authenticateUser(LoginModel login) {
+	public boolean authenticateUser(LoginModel login) throws InvalidCredentialsException, DatabaseException {
+			
+		UserEntity user = service.findByCredentials(new UserEntity(login.getUsername(), login.getPassword()));
 		
-		// Loop through hashamp of users
-		for (LoginModel item : UserList.userList.values()) {
-			// If login attempt matches the login of a registered user
-			if (item.getUsername().equals(login.getUsername()) && item.getPassword().equals(login.getPassword())) {
-				return true;
-			}
+		if(user != null)
+		{
+			// Set ID of logged in user
+			login.setId(user.getUserId()); // Required for games FK
+			LoggedInUser.user = login;
+			
+			System.out.println("Logged in with: " + login.getUsername());
+			return true;
 		}
-		return false;
+		else
+		{
+			System.out.println("Login failed with: " + login.getUsername());
+			throw new InvalidCredentialsException();
+		}
+		
 	}
 	/**
 	 * Method for spring bean upon init

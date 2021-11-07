@@ -6,6 +6,8 @@
 
 package com.gcu.business;
 import com.gcu.model.LoginModel;
+import com.gcu.util.DatabaseException;
+import com.gcu.util.InvalidCredentialsException;
 
 
 /**
@@ -22,8 +24,10 @@ public interface SecurityBusinessServiceInterface {
 	 * @param loginModel (LoginModel) that captures user login credentials
 	 * 
 	 * @return boolean if user successfully logins in, false otherwise
+	 * @throws InvalidCredentialsException 
+	 * @throws DatabaseException 
 	 */
-	boolean authenticateUser(LoginModel loginModel);
+	boolean authenticateUser(LoginModel loginModel) throws InvalidCredentialsException, DatabaseException;
 	
 	/**
 	 * Method for spring bean upon init

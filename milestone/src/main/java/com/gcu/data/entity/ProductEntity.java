@@ -8,12 +8,13 @@ import org.springframework.data.relational.core.mapping.Table;
 public class ProductEntity {
 
 	@Id
-	Long id;
+	@Column("game_Id")
+	Long productId;
 
-	@Column("userId")
+	@Column("user_Id")
 	Long userId;
 
-	@Column("gameName")
+	@Column("name")
 	String name;
 
 	String publisher;
@@ -40,9 +41,9 @@ public class ProductEntity {
 		this.description = description;
 	}
 
-	public ProductEntity(Long id, Long userId, String name, String publisher, String genre, String rating,
+	public ProductEntity(Long productId, Long userId, String name, String publisher, String genre, String rating,
 			String platform, String image, String description) {
-		this.id = id;
+		this.productId = productId;
 		this.userId = userId;
 		this.name = name;
 		this.publisher = publisher;
@@ -59,12 +60,12 @@ public class ProductEntity {
 	
 	// GETTERS AND SETTERS
 	
-	public Long getId() {
-		return id;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	public Long getUserId() {
@@ -133,7 +134,7 @@ public class ProductEntity {
 
 	@Override
 	public String toString() {
-		return "ProductEntity:\n id: " + id + ",\n userId: " + userId + ",\n name: " + name + ",\n publisher: "
+		return "ProductEntity:\n productId: " + productId + ",\n userId: " + userId + ",\n name: " + name + ",\n publisher: "
 				+ publisher + ",\n genre: " + genre + ",\n rating: " + rating + ",\n platform: " + platform
 				+ ",\n image: " + image + ",\n description: " + description;
 	}

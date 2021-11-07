@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.gcu.business.SecurityBusinessServiceInterface;
 import com.gcu.model.LoggedInUser;
 import com.gcu.model.LoginModel;
+import com.gcu.util.DatabaseException;
+import com.gcu.util.InvalidCredentialsException;
 
 /**
  * Login Controller class - all URI's related to login page belong here
@@ -63,10 +65,11 @@ public class LoginController {
 	 * @param model (Model)
 	 * 
 	 * @return String
+	 * @throws DatabaseException 
 	 * 
 	 */
 	@PostMapping("/doLogin")
-	public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) {
+	public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) throws DatabaseException {
 		System.out.println("Attempting login");
 
 		// Check for validation errors
@@ -80,36 +83,33 @@ public class LoginController {
 
 		// Validation error check passed -> no validation errors
 
-		// Check login attempt calling loginUser helper method
 		
 		// User Credentials are valid
-		if (securityService.authenticateUser(loginModel))
-		{	
+		try{
+			securityService.authenticateUser(loginModel);
+		}catch(InvalidCredentialsException e) {
+			// User Credentials are Invalid
+
+			// Set model attribute title
+			model.addAttribute("title", "Login Failure");
+			// Set model attribute userLoginmessage
+			model.addAttribute("userLoginMessage", "Uh oh... please try again " + loginModel.getUsername());
+			System.out.println("Login failed for: " + loginModel.getUsername());
+			return "loginFailure";
+		}
+			
 			// Set model attribute title
 			model.addAttribute("title", "Login Success");
 			// Set model attribute userLoginMessage
 			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
 			
-			// Set ID of logged in user
-			loginModel.setId(1); // Required for FK
-			
-			LoggedInUser.user = loginModel;
-			
-			
+		
 			System.out.println("Logged In User ID: " + LoggedInUser.user);
 			model.addAttribute("user", LoggedInUser.user);
 			System.out.println("User logged in: " + loginModel.getUsername());
 			return "loginSuccess";
 		}
 
-		// User Credentials are Invalid
-
-		// Set model attribute title
-		model.addAttribute("title", "Login Failure");
-		// Set model attribute userLoginmessage
-		model.addAttribute("userLoginMessage", "Uh oh... please try again " + loginModel.getUsername());
-		System.out.println("Login failed for: " + loginModel.getUsername());
-		return "loginFailure";
 	}
 
-}
+

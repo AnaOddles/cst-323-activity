@@ -20,7 +20,7 @@ import com.gcu.util.UserAlreadyExistsException;
  *
  */
 @Service
-public class UserBusniessService implements UserBusinessServiceInterface {
+public class UserBusinessService implements UserBusinessServiceInterface {
 	
 	@Autowired
 	UsersDataService service;

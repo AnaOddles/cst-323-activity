@@ -1,3 +1,9 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// November 7, 2021
+// This is our own work
+
 package com.gcu.data;
 
 import java.util.ArrayList;
@@ -8,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gcu.data.entity.ProductEntity;
-import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.ProductsRepository;
 import com.gcu.util.DatabaseException;
 

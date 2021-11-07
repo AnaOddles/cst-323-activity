@@ -1,3 +1,9 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// November 7, 2021
+// This is our own work
+
 package com.gcu.data.entity;
 
 import org.springframework.data.annotation.Id;

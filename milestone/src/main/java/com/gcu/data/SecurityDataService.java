@@ -16,59 +16,86 @@ import com.gcu.data.repository.UsersRepository;
 import com.gcu.util.DatabaseException;
 
 @Service
-public class SecurityDataService implements DataAccessInterface<UserEntity>{
+public class SecurityDataService implements DataAccessInterface<UserEntity> {
 
 	@Autowired
 	private UsersRepository usersRepository;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param usersRepository
+	 */
 	public SecurityDataService(UsersRepository usersRepository) {
 		this.usersRepository = usersRepository;
 	}
 
+	/**
+	 * Not Implemented
+	 */
 	@Override
 	public List<UserEntity> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Not Implemented
+	 */
 	@Override
 	public Optional<UserEntity> findById(int id) {
 		return null;
 	}
 
+	/**
+	 * Not Implemented
+	 */
 	@Override
 	public boolean update(UserEntity t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Not Implemented
+	 */
 	@Override
 	public boolean delete(UserEntity t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Not Implemented
+	 */
 	@Override
 	public boolean create(UserEntity t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	/**
+	 * Returns User Entity Credentials with Database Exception
+	 * 
+	 * @param t
+	 * @return User Entity
+	 * @throws DatabaseException
+	 */
 	public UserEntity findByCredentials(UserEntity t) throws DatabaseException {
-		
+
 		try {
 			System.out.println("Loggining in: " + t.toString());
 			System.out.println(usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()));
-		
-			//Use user repository to see if username and password exist
-			if(usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()) == null) {
+
+			// Use user repository to see if username and password exist
+			if (usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()) == null) {
 				System.out.println("Invalid credentials!");
 			}
-		
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DatabaseException(e, "Database exception");
 		}
-		return usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword());			
+		return usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword());
 	}
 }

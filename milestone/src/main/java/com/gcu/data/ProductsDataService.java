@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gcu.data.entity.ProductEntity;
 import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.ProductsRepository;
+import com.gcu.util.DatabaseException;
 
 @Service
 public class ProductsDataService implements DataAccessInterface<ProductEntity> {
@@ -22,8 +23,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	}
 
 	@Override
-	public List<ProductEntity> findAll() {
-		// TODO Auto-generated method stub
+	public List<ProductEntity> findAll() throws DatabaseException {
 		List<ProductEntity> products = new ArrayList<ProductEntity>();
 
 		try {
@@ -33,8 +33,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 			productsIterable.forEach(products::add);
 
 		} catch (Exception e) {
-			// TODO Exception handling
-			e.printStackTrace();
+			throw new DatabaseException(e, "Database exception");
 		}
 
 		return products;
@@ -42,21 +41,20 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	}
 
 	@Override
-	// TODO Exception handling
-	public boolean create(ProductEntity product) {
+	public boolean create(ProductEntity product) throws DatabaseException {
 		System.out.println("Product Data Service Create - Product: " + product.toString());
-		// TODO Auto-generated method stub
 		try {
+			if(this.productsRepository.findByName(product.getName()) != null) {
+				return false; 
+			}
 			this.productsRepository.save(product);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+			throw new DatabaseException(e, "Database exception");
 		}
 		return true;
 	}
 
-	public List<ProductEntity> findByUserId(long userId) {
-		// TODO Auto-generated method stub
+	public List<ProductEntity> findByUserId(long userId) throws DatabaseException {
 		List<ProductEntity> products = new ArrayList<ProductEntity>();
 
 		try {
@@ -66,15 +64,14 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 			productsIterable.forEach(products::add);
 
 		} catch (Exception e) {
-			// TODO Exception handling
-			e.printStackTrace();
+			throw new DatabaseException(e, "Database exception");
 		}
 
 		return products;
 	}
 
 	@Override
-	public Optional<UserEntity> findById(int id) {
+	public Optional<ProductEntity> findById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

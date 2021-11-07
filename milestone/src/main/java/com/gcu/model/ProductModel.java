@@ -25,7 +25,9 @@ public class ProductModel {
 	 * Id of product (long)
 	 */
 	private long id;
-
+	/**
+	 * Id of User (long)
+	 */
 	private long userId;
 
 	/**

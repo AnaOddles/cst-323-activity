@@ -51,12 +51,13 @@ public class SecurityDataService implements DataAccessInterface<UserEntity>{
 	public UserEntity findByCredentials(UserEntity t) throws DatabaseException {
 		
 		try {
-		System.out.println("Loggining in: " + t.toString());
-		System.out.println(usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()));
+			System.out.println("Loggining in: " + t.toString());
+			System.out.println(usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()));
 		
-		if(usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()) == null) {
-			System.out.println("Invalid credentials!");
-		}
+			//Use user repository to see if username and password exist
+			if(usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()) == null) {
+				System.out.println("Invalid credentials!");
+			}
 		
 		}catch(Exception e){
 			e.printStackTrace();

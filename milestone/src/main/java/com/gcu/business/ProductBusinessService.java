@@ -19,7 +19,6 @@ import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
 import com.gcu.util.DatabaseException;
 import com.gcu.util.ProductAlreadyExistsException;
-import com.gcu.util.UserAlreadyExistsException;
 
 /**
  * Product Business Service used for product operations

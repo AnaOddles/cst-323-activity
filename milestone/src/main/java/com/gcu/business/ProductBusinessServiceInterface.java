@@ -30,9 +30,22 @@ public interface ProductBusinessServiceInterface {
 	 * @throws ProductAlreadyExistsException 
 	 */
 	boolean createProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException;
-	
+	/**
+	 * 
+	 * Exception
+	 * 
+	 * @return List Product Model
+	 * @throws DatabaseException
+	 */
 	List<ProductModel> getProducts() throws DatabaseException;
 	
+	/**
+	 * 
+	 * Exception
+	 * 
+	 * @return List Product Model
+	 * @throws DatabaseException
+	 */
 	List<ProductModel> getMyProducts() throws DatabaseException;
 	/**
 	 * Method for spring bean upon init

@@ -9,6 +9,8 @@ package com.gcu.business;
 import java.util.List;
 
 import com.gcu.model.ProductModel;
+import com.gcu.util.DatabaseException;
+import com.gcu.util.ProductAlreadyExistsException;
 
 /**
  * Interface that specifies functionality for product operations
@@ -24,12 +26,14 @@ public interface ProductBusinessServiceInterface {
 	 * @param productModel
 	 * 
 	 * @return boolean
+	 * @throws DatabaseException 
+	 * @throws ProductAlreadyExistsException 
 	 */
-	boolean createProduct(ProductModel productModel);
+	boolean createProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException;
 	
-	List<ProductModel> getProducts();
+	List<ProductModel> getProducts() throws DatabaseException;
 	
-	List<ProductModel> getMyProducts();
+	List<ProductModel> getMyProducts() throws DatabaseException;
 	/**
 	 * Method for spring bean upon init
 	 * 

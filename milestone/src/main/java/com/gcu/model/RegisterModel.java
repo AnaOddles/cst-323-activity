@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// October 24, 2021
+// November 7, 2021
 // This is our own work
 
 package com.gcu.model;
@@ -42,7 +42,7 @@ public class RegisterModel {
 	private String lastName;
 
 	/**
-	 * Age of user (String)
+	 * Age of user (int)
 	 */
 	@Min(value = 5, message = "Age cannot be less than 5")
 	@Max(value = 150, message = "Age cannot be greater than 150")

@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// October 24, 2021
+// November 7, 2021
 // This is our own work
 
 package com.gcu.business;
@@ -19,7 +19,6 @@ import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
 import com.gcu.util.DatabaseException;
 import com.gcu.util.ProductAlreadyExistsException;
-import com.gcu.util.UserAlreadyExistsException;
 
 /**
  * Product Business Service used for product operations

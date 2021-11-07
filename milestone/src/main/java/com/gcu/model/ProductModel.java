@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// October 24, 2021
+// November 7, 2021
 // This is our own work
 
 package com.gcu.model;
@@ -25,7 +25,9 @@ public class ProductModel {
 	 * Id of product (long)
 	 */
 	private long id;
-
+	/**
+	 * Id of User (long)
+	 */
 	private long userId;
 
 	/**

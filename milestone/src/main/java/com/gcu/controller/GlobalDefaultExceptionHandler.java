@@ -10,13 +10,12 @@ public class GlobalDefaultExceptionHandler
 	/**
 	 * Controller method to handle the unhandled Exception.
 	 * 
-	 * @param ex The source Exception
+	 * @param Exception
 	 * @return Model and name of the Exception View
 	 */
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(Exception ex)
 	{
-		// Create a Model and View, populate with the Exception information, and display a common Error Page
 		ModelAndView model = new ModelAndView();
 		model.addObject("title", "Error");
 		model.addObject("error", "Oh no something went wrong... contact database adminstrator");

@@ -16,7 +16,7 @@ public class InvalidCredentialsException extends Exception
 	 * Non-default constructor
 	 * 
 	 * @param err Wrapped exception
-	 * @param errorMessage Custome excetion message
+	 * @param errorMessage Custom exception message
 	 */
 	public InvalidCredentialsException(Throwable err, String errorMessage)
 	{

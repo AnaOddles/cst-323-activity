@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gcu</groupId>
-	<artifactId>topic1-1</artifactId>
+	<artifactId>milestone</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>topic1-1</name>
-	<description>Topic 1-1</description>
+	<description>Milestone</description>
 	<properties>
 		<java.version>15</java.version>
 	</properties>

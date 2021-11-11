@@ -99,7 +99,7 @@ This is our own work
 		<!-- Display of Products as Cards -->
 		<div class="container">
 			<div class="row">
-				<div th:each="product : ${products}">
+				<div th:each="product : ${products}" >
 
 					<div class="col">
 						<div class="card" style="width: 18rem;">
@@ -110,6 +110,7 @@ This is our own work
 									on the card title and make up the bulk of the card's content.</p>
 	
 								<p th:inline="text">
+									<b>ID:</b> [[${product.id}]] <br />
 									<b>Publisher:</b> [[${product.publisher}]] <br />
 									<b>Genre:</b> [[${product.genre}]] <br />
 									<b>Rating:</b> [[${product.rating}]] <br />
@@ -120,12 +121,12 @@ This is our own work
 								
 								<!-- Edit Product Modal -->
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProduct">
+		<button type="submit" class="btn btn-warning"  data-backdrop="static" data-keyboard="false"  data-toggle="modal" th:attr="data-target=${'#editModal' + product.id}" >
 			Edit
 		</button>
 
-		<!-- Create Product Modal -->
-		<div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="editProduct"
+		<!-- Edit Product Modal -->
+		<div class="modal fade" th:attr="id=${'editModal' + product.id}" tabindex="-1" role="dialog" aria-labelledby="editProduct"
 			aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">

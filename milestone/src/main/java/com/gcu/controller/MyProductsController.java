@@ -80,7 +80,7 @@ public class MyProductsController {
 		// Check to see if validation passes
 		if (bindingResult.hasErrors()) {
 			// Add error model attribute
-			model.addAttribute("error", "error");
+			model.addAttribute("createError", "error");
 			model.addAttribute("products", productService.getMyProducts());
 			return "myProducts";
 		}
@@ -88,10 +88,10 @@ public class MyProductsController {
 		try {
 			//Call service to create product
 			productService.createProduct(productModel);
-		}catch (ProductAlreadyExistsException e){
+		} catch (ProductAlreadyExistsException e){
 			
 			//If products already exists - return back to product form with validation binding result error 
-			model.addAttribute("error", "error");
+			model.addAttribute("createError", "error");
         	bindingResult.rejectValue("name", "error.product", "game already exists");
         	model.addAttribute("products", productService.getMyProducts());
         	return "myProducts";
@@ -103,5 +103,42 @@ public class MyProductsController {
 		model.addAttribute("products", productService.getMyProducts());
 		return "myProducts";
 	}
+	
+	@PostMapping("/editProduct")
+	public String editProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) throws DatabaseException, ProductAlreadyExistsException {
+		// Set model attribute products
+		model.addAttribute("title", "My Products");
+		model.addAttribute("user", LoggedInUser.user);
+		
+		// Check to see if validation passes
+		if (bindingResult.hasErrors()) {
+			// Add error model attribute
+			model.addAttribute("editError", "error");
+			model.addAttribute("products", productService.getMyProducts());
+			return "myProducts";
+		}
+		
+		try {
+			//Call service to create product
+			productService.createProduct(productModel);
+		} catch (ProductAlreadyExistsException e){
+			
+			//If products already exists - return back to product form with validation binding result error 
+			model.addAttribute("editError", "error");
+        	bindingResult.rejectValue("name", "error.product", "game already exists");
+        	model.addAttribute("products", productService.getMyProducts());
+        	return "myProducts";
+		}
+	
+		// Set model attribute productModel to instance of a new productModel
+		model.addAttribute("productModel", new ProductModel());
+		//Set model attribute products to a new list of products in database
+		model.addAttribute("products", productService.getMyProducts());
+		
+		return "myProducts";
+	}
+	
+	
+	
 
 }

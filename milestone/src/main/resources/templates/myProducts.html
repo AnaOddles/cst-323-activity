@@ -13,24 +13,24 @@ This is our own work
 
 	<div layout:fragment="content">
 
-		<!-- Modal -->
+		<!-- Create Product Modal -->
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProduct">
 			Create Product
 		</button>
 
 		<!-- Error -->
-		<div th:if="${error == 'error'}">
+		<div th:if="${createError == 'error'}">
 			<small style="color:red">Error Creating Product</small>
 		</div>
 
-		<!-- Modal -->
+		<!-- Create Product Modal -->
 		<div class="modal fade" id="createProduct" tabindex="-1" role="dialog" aria-labelledby="createProduct"
 			aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Create Product Form</h5>
+						<h5 class="modal-title" id="createModalLabel">Create Product Form</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -116,8 +116,91 @@ This is our own work
 									<b>Rating:</b> [[${product.rating}]] <br />
 									<b>Platform:</b> [[${product.platform}]] <br />
 								</p>
-	
-								<a href="#" class="btn btn-warning">Edit</a>
+								
+								
+								
+								<!-- Edit Product Modal -->
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProduct">
+			Edit
+		</button>
+
+		<!-- Error -->
+		<div th:if="${editError == 'error'}">
+			<small style="color:red">Error Editing Product</small>
+		</div>
+
+		<!-- Create Product Modal -->
+		<div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="editProduct"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="editModalLabel">Edit Product Form</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+
+						<!-- Form -->
+						<form action="#" th:action="@{editProduct}" th:object="${productModel}" method="post">
+
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="name" id="name" th:value="${product.name}" aria-describedby="name" >
+								<small style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name</small>
+							</div>
+
+							<div class="form-group">
+								<label for="publisher">Publisher</label>
+								<input type="text" class="form-control" name="publisher" id="publisher" th:value="${product.publisher}" aria-describedby="publisher" >
+								<small style="color:red" th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}">Publisher</small>
+							</div>
+				
+							<div class="form-group">
+								<label for="genre">Genre</label>
+								<input type="text" class="form-control" name="genre" id="genre" th:value="${product.genre}" aria-describedby="genre" >
+								<small style="color:red" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">Genre</small>
+							</div>
+				
+				
+							<div class="form-group">
+								<label for="rating">Rating</label>
+								<input type="text" class="form-control" name="rating" id="rating" th:value="${product.rating}" aria-describedby="rating" >
+								<small style="color:red" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">Rating</small>
+							</div>
+							
+							<div class="form-group">
+								<label for="platform">Platform</label>
+								<input type="text" class="form-control" name="platform" id="platform" th:value="${product.platform}" aria-describedby="platform" >
+								<small style="color:red" th:if="${#fields.hasErrors('platform')}" th:errors="*{platform}">Platform</small>
+							</div>
+				
+							<div class="form-group">
+								<label for="image">Image</label>
+								<input type="text" class="form-control" name="image" id="image" th:value="${product.image}" aria-describedby="image" >
+								<small style="color:red" th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Image</small>
+							</div>
+							<div class="form-group">
+								<label for="desc">Description</label>
+								<textarea rows="4" cols="50" class="form-control" name="description" id="description">[[${product.description}]]</textarea>
+								<small style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description</small>
+							</div>
+
+					</div>
+					
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Edit</button>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+								
+								
 								<a href="#" class="btn btn-danger">Delete</a>
 									
 							</div>

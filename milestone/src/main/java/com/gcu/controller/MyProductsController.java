@@ -120,7 +120,8 @@ public class MyProductsController {
 		
 		try {
 			//Call service to create product
-			productService.createProduct(productModel);
+			System.out.println("iD: " + productModel.getId());
+			productService.editProduct(productModel);
 		} catch (ProductAlreadyExistsException e){
 			
 			//If products already exists - return back to product form with validation binding result error 

@@ -68,7 +68,7 @@ This is our own work
 							
 							<div class="form-group">
 								<label for="platform">Platform</label>
-								<input type="text" class="form-control" th:field="*{platform}" aria-describedby="platform" placeholder="platform">
+								<input type="text" class="form-control" th:field="*{platform}" aria-describedby="platform" placeholder="Platform">
 								<small style="color:red" th:if="${#fields.hasErrors('platform')}" th:errors="*{platform}">Platform</small>
 							</div>
 				
@@ -110,7 +110,6 @@ This is our own work
 									on the card title and make up the bulk of the card's content.</p>
 	
 								<p th:inline="text">
-									<b>Creator:</b> [[${user.username}]] <br />
 									<b>Publisher:</b> [[${product.publisher}]] <br />
 									<b>Genre:</b> [[${product.genre}]] <br />
 									<b>Rating:</b> [[${product.rating}]] <br />
@@ -124,11 +123,6 @@ This is our own work
 		<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProduct">
 			Edit
 		</button>
-
-		<!-- Error -->
-		<div th:if="${editError == 'error'}">
-			<small style="color:red">Error Editing Product</small>
-		</div>
 
 		<!-- Create Product Modal -->
 		<div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="editProduct"
@@ -145,7 +139,9 @@ This is our own work
 
 						<!-- Form -->
 						<form action="#" th:action="@{editProduct}" th:object="${productModel}" method="post">
-
+							
+							<input type="hidden" name="id" id="id" th:value="${product.id}">
+							
 							<div class="form-group">
 								<label for="name">Name</label>
 								<input type="text" class="form-control" name="name" id="name" th:value="${product.name}" aria-describedby="name" >
@@ -203,6 +199,12 @@ This is our own work
 								
 								<a href="#" class="btn btn-danger">Delete</a>
 									
+									
+							<!-- Error -->
+							<div th:if="${editError == 'error'}">
+								<small style="color:red">Error Editing Product</small>
+							</div>
+														
 							</div>
 						</div>
 					</div>

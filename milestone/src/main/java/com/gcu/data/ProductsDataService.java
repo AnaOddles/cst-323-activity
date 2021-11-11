@@ -105,6 +105,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	@Override
 	public Optional<ProductEntity> findById(int id) {
 		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -112,8 +113,13 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	 * Not yet Implemented
 	 */
 	@Override
-	public boolean update(ProductEntity t) {
+	public boolean update(ProductEntity product) {
 		// TODO Auto-generated method stub
+		System.out.println("Product Data Service Edit - Product: " + product.toString());
+		
+		this.productsRepository.save(product);
+		
+		
 		return false;
 	}
 

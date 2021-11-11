@@ -33,7 +33,7 @@ import com.gcu.util.ProductAlreadyExistsException;
 //Requested Mapping to set the path to invoke controller - invoke using /products in URI - root
 @Controller
 @RequestMapping("/myproducts")
-public class MyProductsController {
+public class ProductsController {
 	// Inject product service using dependency injection
 	@Autowired
 	private ProductBusinessServiceInterface productService; 

@@ -120,16 +120,20 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 		this.productsRepository.save(product);
 		
 		
-		return false;
+		return true;
 	}
 
 	/**
 	 * Not yet Implemented
 	 */
 	@Override
-	public boolean delete(ProductEntity t) {
+	public boolean delete(ProductEntity product) {
 		// TODO Auto-generated method stub
-		return false;
+		System.out.println("Product Data Service Delete - Product: " + product.toString());
+		
+		this.productsRepository.delete(product);
+		
+		return true;
 	}
 
 }

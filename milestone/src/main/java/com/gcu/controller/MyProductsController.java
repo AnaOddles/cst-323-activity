@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.gcu.business.ProductBusinessServiceInterface;
 import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
@@ -24,7 +23,8 @@ import com.gcu.util.DatabaseException;
 import com.gcu.util.ProductAlreadyExistsException;
 
 /**
- * Product Controller class - all URI's related to Product page belong here 
+ * Product Controller class - all URI's related to Product page belong here
+ * 
  * @author melzs
  *
  */
@@ -36,7 +36,7 @@ import com.gcu.util.ProductAlreadyExistsException;
 public class MyProductsController {
 	// Inject product service using dependency injection
 	@Autowired
-	private ProductBusinessServiceInterface productService; 
+	private ProductBusinessServiceInterface productService;
 
 	/**
 	 * Return a view name along with a model attribute Mapping - Invokes using '/'
@@ -45,7 +45,7 @@ public class MyProductsController {
 	 * @param model (Model) from products view
 	 * 
 	 * @return String for view forwarded to
-	 * @throws DatabaseException 
+	 * @throws DatabaseException
 	 * 
 	 */
 	@GetMapping("/")
@@ -59,7 +59,7 @@ public class MyProductsController {
 		model.addAttribute("user", LoggedInUser.user);
 		return "myProducts";
 	}
-	
+
 	/**
 	 * Return a view name along with a model attribute Mappings - Invokes using
 	 * '/createProduct' in URI after controller mapping '/products/createProduct'
@@ -68,15 +68,16 @@ public class MyProductsController {
 	 * @param bindingResult
 	 * @param model
 	 * @return String for view forwarded to
-	 * @throws DatabaseException 
-	 * @throws ProductAlreadyExistsException 
+	 * @throws DatabaseException
+	 * @throws ProductAlreadyExistsException
 	 */
 	@PostMapping("/createProduct")
-	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) throws DatabaseException, ProductAlreadyExistsException {
+	public String createProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model)
+			throws DatabaseException, ProductAlreadyExistsException {
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
 		model.addAttribute("user", LoggedInUser.user);
-		
+
 		// Check to see if validation passes
 		if (bindingResult.hasErrors()) {
 			// Add error model attribute
@@ -84,32 +85,34 @@ public class MyProductsController {
 			model.addAttribute("products", productService.getMyProducts());
 			return "myProducts";
 		}
-		
+
 		try {
-			//Call service to create product
+			// Call service to create product
 			productService.createProduct(productModel);
-		} catch (ProductAlreadyExistsException e){
-			
-			//If products already exists - return back to product form with validation binding result error 
+		} catch (ProductAlreadyExistsException e) {
+
+			// If products already exists - return back to product form with validation
+			// binding result error
 			model.addAttribute("createError", "error");
-        	bindingResult.rejectValue("name", "error.product", "game already exists");
-        	model.addAttribute("products", productService.getMyProducts());
-        	return "myProducts";
+			bindingResult.rejectValue("name", "error.product", "game already exists");
+			model.addAttribute("products", productService.getMyProducts());
+			return "myProducts";
 		}
-	
+
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
-		//Set model attribute products to a new list of products in database
+		// Set model attribute products to a new list of products in database
 		model.addAttribute("products", productService.getMyProducts());
 		return "myProducts";
 	}
-	
+
 	@PostMapping("/editProduct")
-	public String editProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model) throws DatabaseException, ProductAlreadyExistsException {
+	public String editProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model)
+			throws DatabaseException, ProductAlreadyExistsException {
 		// Set model attribute products
 		model.addAttribute("title", "My Products");
 		model.addAttribute("user", LoggedInUser.user);
-		
+
 		// Check to see if validation passes
 		if (bindingResult.hasErrors()) {
 			// Add error model attribute
@@ -117,29 +120,45 @@ public class MyProductsController {
 			model.addAttribute("products", productService.getMyProducts());
 			return "myProducts";
 		}
-		
+
 		try {
-			//Call service to create product
+			// Call service to create product
 			System.out.println("iD: " + productModel.getId());
 			productService.editProduct(productModel);
-		} catch (ProductAlreadyExistsException e){
-			
-			//If products already exists - return back to product form with validation binding result error 
+		} catch (ProductAlreadyExistsException e) {
+
+			// If products already exists - return back to product form with validation
+			// binding result error
 			model.addAttribute("editError", "error");
-        	bindingResult.rejectValue("name", "error.product", "game already exists");
-        	model.addAttribute("products", productService.getMyProducts());
-        	return "myProducts";
+			bindingResult.rejectValue("name", "error.product", "game already exists");
+			model.addAttribute("products", productService.getMyProducts());
+			return "myProducts";
 		}
-	
+
 		// Set model attribute productModel to instance of a new productModel
 		model.addAttribute("productModel", new ProductModel());
-		//Set model attribute products to a new list of products in database
+		// Set model attribute products to a new list of products in database
 		model.addAttribute("products", productService.getMyProducts());
-		
+
 		return "myProducts";
 	}
-	
-	
-	
+
+	@PostMapping("/deleteProduct")
+	public String deleteProduct(ProductModel productModel, Model model)
+			throws DatabaseException, ProductAlreadyExistsException {
+		// Set model attribute products
+		model.addAttribute("title", "My Products");
+		model.addAttribute("user", LoggedInUser.user);
+
+
+		productService.deleteProduct(productModel);
+
+		// Set model attribute productModel to instance of a new productModel
+		model.addAttribute("productModel", new ProductModel());
+		// Set model attribute products to a new list of products in database
+		model.addAttribute("products", productService.getMyProducts());
+
+		return "myProducts";
+	}
 
 }

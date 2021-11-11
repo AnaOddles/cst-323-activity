@@ -66,7 +66,19 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));
 
 		// TODO Auto-generated method stub
-		return false;
+		return true;
+	}
+	
+	@Override
+	public boolean deleteProduct(ProductModel productModel) throws DatabaseException {
+		// TODO Auto-generated method stub
+		System.out.println("Delete Product Business Service");
+
+		// If a product already exists - throw exception
+		service.delete(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
+				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
+				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));
+		return true;
 	}
 
 	/**

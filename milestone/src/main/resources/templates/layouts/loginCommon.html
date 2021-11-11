@@ -31,7 +31,8 @@ This is our own work
       				<li class="nav-item">
        					<a th:classappend="${#httpServletRequest.getRequestURI() == '/myproducts/' || 
        					#httpServletRequest.getRequestURI() == '/myproducts/createProduct' || 
-       					#httpServletRequest.getRequestURI() == '/myproducts/editProduct'
+       					#httpServletRequest.getRequestURI() == '/myproducts/editProduct' ||
+       					#httpServletRequest.getRequestURI() == '/myproducts/deleteProduct'
        					 ? 'active':''}"class="nav-item nav-link" href="/myproducts/">My Products</a>
       				</li>
            			

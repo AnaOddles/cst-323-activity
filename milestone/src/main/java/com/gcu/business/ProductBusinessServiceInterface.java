@@ -33,6 +33,8 @@ public interface ProductBusinessServiceInterface {
 	
 	boolean editProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException;
 	
+	boolean deleteProduct(ProductModel productModel) throws DatabaseException; 
+	
 	/**
 	 * 
 	 * Exception

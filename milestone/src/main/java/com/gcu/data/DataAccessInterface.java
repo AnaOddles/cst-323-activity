@@ -42,7 +42,7 @@ public interface DataAccessInterface<T> {
 	 * @param t
 	 * @return boolean
 	 */
-	public boolean update(T t);
+	public boolean update(T t) throws DatabaseException;
 
 	/**
 	 * Delete Template Object
@@ -50,5 +50,5 @@ public interface DataAccessInterface<T> {
 	 * @param t
 	 * @return boolean
 	 */
-	public boolean delete(T t);
+	public boolean delete(T t) throws DatabaseException;
 }

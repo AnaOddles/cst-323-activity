@@ -24,7 +24,8 @@ public interface ProductsRepository extends CrudRepository<ProductEntity, Long> 
 	 * @param name
 	 * @return ProductEntity
 	 */
-	ProductEntity findByName(String name);
+	@Query("SELECT * FROM games WHERE name = :name AND user_Id = :userId")
+	ProductEntity findByNameAndUserId(String name, long userId);
 	
 	/**
 	 * Rerurns any duplicate products 
@@ -32,6 +33,6 @@ public interface ProductsRepository extends CrudRepository<ProductEntity, Long> 
 	 * @param productId
 	 * @return
 	 */
-	@Query("SELECT * FROM games WHERE name = :name AND game_Id != :productId")
-	ProductEntity findDuplicateProduct(String name,long productId);
+	@Query("SELECT * FROM games WHERE name = :name AND game_Id != :productId AND user_Id = :userId")
+	ProductEntity findDuplicateProduct(String name,long productId, long userId);
 }

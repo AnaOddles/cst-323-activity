@@ -31,8 +31,26 @@ public interface ProductBusinessServiceInterface {
 	 */
 	boolean createProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException;
 	
+	/**
+	 * Method to edit product
+	 * 
+	 * @param productModel
+	 * 
+	 * @return boolean
+	 * @throws DatabaseException 
+	 * @throws ProductAlreadyExistsException 
+	 */
 	boolean editProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException;
 	
+	/**
+	 * Method to delete product
+	 * 
+	 * @param productModel
+	 * 
+	 * @return boolean
+	 * @throws DatabaseException 
+	 * @throws ProductAlreadyExistsException 
+	 */
 	boolean deleteProduct(ProductModel productModel) throws DatabaseException; 
 	
 	/**
@@ -52,12 +70,14 @@ public interface ProductBusinessServiceInterface {
 	 * @throws DatabaseException
 	 */
 	List<ProductModel> getMyProducts() throws DatabaseException;
+	
 	/**
 	 * Method for spring bean upon init
 	 * 
 	 * @return void
 	 */
 	void init();
+	
 	/**
 	 * Method for spring bean upon destroy
 	 * 

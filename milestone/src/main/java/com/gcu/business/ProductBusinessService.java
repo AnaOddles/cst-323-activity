@@ -58,6 +58,14 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		return true;
 	}
 
+	/**
+	 * Method to edit a product
+	 * 
+	 * @param product ProductModel that captures product properties
+	 * @return boolean
+	 * @throws DatabaseException
+	 * @throws ProductAlreadyExistsException
+	 */
 	@Override
 	public boolean editProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException {
 		log.debug("In Products Business Service - editProduct");
@@ -70,11 +78,17 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 			throw new ProductAlreadyExistsException();
 		}
 		;
-
-		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * Method to delete a product
+	 * 
+	 * @param product ProductModel that captures product properties
+	 * @return void
+	 * @throws DatabaseException
+	 * @throws ProductAlreadyExistsException
+	 */
 	@Override
 	public boolean deleteProduct(ProductModel productModel) throws DatabaseException {
 		log.debug("In Products Business Service - deleteProduct");
@@ -93,6 +107,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	@Override
 	public List<ProductModel> getProducts() throws DatabaseException {
 		log.debug("In Products Business Service - getProducts");
+		
 		// Call service to grab all products
 		List<ProductEntity> productsEntity = service.findAll();
 
@@ -111,7 +126,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	/**
 	 * Method to get all products for logged in user
 	 * 
-	 * @return void
+	 * @return List<ProductModel> 
 	 * @throws DatabaseException
 	 */
 	@Override
@@ -123,6 +138,8 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 		// Prepping to return a list of products models for view
 		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
+		
+		//Create product models to return back to products view
 		for (ProductEntity entity : productsEntity) {
 			productsDomain.add(new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),
 					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),

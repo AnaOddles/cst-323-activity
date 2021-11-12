@@ -44,7 +44,7 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	public boolean authenticateUser(LoginModel login) throws InvalidCredentialsException, DatabaseException {
 		log.debug("In Security Business Service - authenticateUser");
 			
-		//Call Service to authenticate user - returns User Entity from databawe
+		//Call Service to authenticate user - returns User Entity from database
 		UserEntity user = service.findByCredentials(new UserEntity(login.getUsername(), login.getPassword()));
 		
 		//If User is returned - log in user - else - throw invalid credentials exception
@@ -57,6 +57,7 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 			log.info("Logged in with: " + login.getUsername());
 			return true;
 		}
+		//If user is not returned - throw invalid credentials exceotion
 		else
 		{
 			log.info("Login failed with: " + login.getUsername());
@@ -64,6 +65,7 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 		}
 		
 	}
+	
 	/**
 	 * Method for spring bean upon init
 	 * 

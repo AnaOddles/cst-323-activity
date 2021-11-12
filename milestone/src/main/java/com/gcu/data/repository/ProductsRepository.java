@@ -21,17 +21,19 @@ public interface ProductsRepository extends CrudRepository<ProductEntity, Long> 
 	Iterable<ProductEntity> findByUserId(long userId);
 	/**
 	 * Find Product by Name
-	 * @param name
-	 * @return ProductEntity
+	 * @param String name
+	 * @param long userId
+	 * @return ProductEntity product
 	 */
 	@Query("SELECT * FROM games WHERE name = :name AND user_Id = :userId")
 	ProductEntity findByNameAndUserId(String name, long userId);
 	
 	/**
-	 * Rerurns any duplicate products 
-	 * @param name
-	 * @param productId
-	 * @return
+	 * Returns any duplicate products 
+	 * @param String name
+	 * @param long productId
+	 * @param long userId
+	 * @return ProductEntity 
 	 */
 	@Query("SELECT * FROM games WHERE name = :name AND game_Id != :productId AND user_Id = :userId")
 	ProductEntity findDuplicateProduct(String name,long productId, long userId);

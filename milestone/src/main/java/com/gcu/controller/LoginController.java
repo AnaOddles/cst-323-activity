@@ -82,8 +82,8 @@ public class LoginController {
 		// Validation error check passed -> no validation errors
 
 		
-		// User Credentials are valid
 		try{
+			//Call security service to authenticate user
 			securityService.authenticateUser(loginModel);
 		}catch(InvalidCredentialsException e) {
 			// User Credentials are Invalid
@@ -99,7 +99,7 @@ public class LoginController {
 			model.addAttribute("title", "Login Success");
 			// Set model attribute userLoginMessage
 			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
-			
+			//Set the user attribute to the user LoggedInUser static object
 			model.addAttribute("user", LoggedInUser.user);
 			return "loginSuccess";
 		}

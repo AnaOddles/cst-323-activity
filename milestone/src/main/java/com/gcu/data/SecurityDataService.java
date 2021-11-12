@@ -14,7 +14,11 @@ import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.UsersRepository;
 import com.gcu.util.DatabaseException;
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * Data service class for security
+ * @author anasanchez
+ *
+ */
 @Slf4j
 @Service
 public class SecurityDataService implements DataAccessInterface<UserEntity> {
@@ -78,19 +82,21 @@ public class SecurityDataService implements DataAccessInterface<UserEntity> {
 	/**
 	 * Returns User Entity Credentials with Database Exception
 	 * 
-	 * @param t
+	 * @param UserEntity
 	 * @return User Entity
 	 * @throws DatabaseException
 	 */
 	public UserEntity findByCredentials(UserEntity t) throws DatabaseException {
+		//Try catch to catch any database errors
 		try {
 			// Use user repository to see if username and password exist
-			if (usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()) == null) {
-			}
-
+			usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword());
+			
 		} catch (Exception e) {
+			//throw database exception custom exception
 			throw new DatabaseException(e, "Database exception");
 		}
+		//If no errors use user repository to check if users exists with passed in username and password
 		return usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword());
 	}
 }

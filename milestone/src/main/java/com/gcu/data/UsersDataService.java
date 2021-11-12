@@ -16,7 +16,11 @@ import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.ProfilesRepository;
 import com.gcu.data.repository.UsersRepository;
 import com.gcu.util.DatabaseException;
-
+/**
+ * Data service class for user
+ * @author anasanchez
+ *
+ */
 @Service
 public class UsersDataService implements DataAccessInterface<UserEntity> {
 
@@ -38,23 +42,28 @@ public class UsersDataService implements DataAccessInterface<UserEntity> {
 	/**
 	 * Transaction Creates User and Profile with Database Exception
 	 * 
-	 * @param user
-	 * @param profile
+	 * @param UserEntity user
+	 * @param ProfileEntity profile
 	 * @return Integer
 	 * @throws DatabaseException
 	 */
 	@Transactional
 	public int create(UserEntity user, ProfileEntity profile) throws DatabaseException {
 		try {
-
+			//Use user repository for query that finds if user already exists by using username
 			if (this.usersRepository.findByUsername(user.getUsername()) != null) {
+				//exit and return 1 if user exists
 				return 1;
 			}
+			//If user does not already exist - use users repository to persist into db
 			user = this.usersRepository.save(user);
+			//Grab the userId from user just added into database and set it o to profile entity
 			profile.setUserId(user.getUserId());
+			//Use profules repository to persist a new profile for the user refistered
 			this.profilesRepository.save(profile);
 
 		} catch (Exception e) {
+			//Throw database exception if database error occurs
 			throw new DatabaseException(e, "Database exception");
 		}
 		return 0;
@@ -70,12 +79,13 @@ public class UsersDataService implements DataAccessInterface<UserEntity> {
 	}
 
 	/**
-	 * Returns Optional User Entity
+	 * Returns Optional<UserEntity>
 	 * 
-	 * @param id
+	 * @param Integer id
 	 */
 	@Override
 	public Optional<UserEntity> findById(int id) {
+		//Call users repository tp find a user by its ID
 		return usersRepository.findById((long) id);
 	}
 

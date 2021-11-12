@@ -27,6 +27,7 @@ public class UserBusinessService implements UserBusinessServiceInterface {
 	
 	@Autowired
 	UsersDataService service;
+	
 	/**
 	 * Method to register user 
 	 * 
@@ -40,6 +41,7 @@ public class UserBusinessService implements UserBusinessServiceInterface {
 		log.debug("In User Business Service - register");
 		
 		log.info("Registering a user to the database - " + register.getLoginUser().getUsername());
+		
 		//Call service to register user 
 		int registeredUser = service.create(new UserEntity(register.getLoginUser().getUsername(), register.getLoginUser().getPassword())
 				,new ProfileEntity(register.getFirstName(), register.getLastName(), register.getAge(),

@@ -61,12 +61,13 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		System.out.println("Edit Product Business Service");
 
 		// If a product already exists - throw exception
-		if(!service.update(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
+		if (!service.update(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()))) {
 			System.out.println("Cannot update to duplicate product");
 			throw new ProductAlreadyExistsException();
-		};
+		}
+		;
 
 		// TODO Auto-generated method stub
 		return true;
@@ -77,11 +78,9 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		// TODO Auto-generated method stub
 		System.out.println("Delete Product Business Service");
 
-		// If a product already exists - throw exception
-		service.delete(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
+		return service.delete(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));
-		return true;
 	}
 
 	/**

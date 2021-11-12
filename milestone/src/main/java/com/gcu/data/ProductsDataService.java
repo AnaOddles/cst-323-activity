@@ -82,11 +82,12 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 		// TODO Auto-generated method stub
 		System.out.println("Product Data Service Edit - Product: " + product.toString());
 		try {
-			if (this.productsRepository.findByName(product.getName()) != null) {
+			if (this.productsRepository.findDuplicateProduct(product.getName(), product.getProductId()) != null) {
 				return false;
 			}
 			this.productsRepository.save(product);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -103,6 +104,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 		try {
 			this.productsRepository.delete(product);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new DatabaseException(e, "Database exception");
 		}
 

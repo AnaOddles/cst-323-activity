@@ -28,7 +28,6 @@ import com.gcu.util.ProductAlreadyExistsException;
  * @author melzs
  *
  */
-
 //Annotations to make the class a controller
 //Requested Mapping to set the path to invoke controller - invoke using /products in URI - root
 @Controller

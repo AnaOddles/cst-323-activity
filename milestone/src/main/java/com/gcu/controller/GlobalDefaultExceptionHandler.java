@@ -24,9 +24,14 @@ public class GlobalDefaultExceptionHandler
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(Exception ex)
 	{
+		//Create a model and view obj
 		ModelAndView model = new ModelAndView();
+		
+		//Modify the title and error attributes on view
 		model.addObject("title", "Error");
 		model.addObject("error", "Oh no something went wrong... contact database adminstrator");
+		
+		//Set the view to exception.html
 		model.setViewName("exception");
 		return model;
 	}

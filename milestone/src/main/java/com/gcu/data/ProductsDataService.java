@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.gcu.data.entity.ProductEntity;
 import com.gcu.data.repository.ProductsRepository;
+import com.gcu.model.LoggedInUser;
 import com.gcu.util.DatabaseException;
 
 @Service
@@ -63,8 +64,9 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	@Override
 	public boolean create(ProductEntity product) throws DatabaseException {
 		System.out.println("Product Data Service Create - Product: " + product.toString());
+		System.out.println("User ID: " + LoggedInUser.user.getId());
 		try {
-			if (this.productsRepository.findByName(product.getName()) != null) {
+			if (this.productsRepository.findByNameAndUserId(product.getName(), LoggedInUser.user.getId()) != null) {
 				return false;
 			}
 			this.productsRepository.save(product);
@@ -81,8 +83,9 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	public boolean update(ProductEntity product) throws DatabaseException {
 		// TODO Auto-generated method stub
 		System.out.println("Product Data Service Edit - Product: " + product.toString());
+		System.out.println("User ID: " + LoggedInUser.user.getId());
 		try {
-			if (this.productsRepository.findDuplicateProduct(product.getName(), product.getProductId()) != null) {
+			if (this.productsRepository.findDuplicateProduct(product.getName(), product.getProductId(), LoggedInUser.user.getId()) != null) {
 				return false;
 			}
 			this.productsRepository.save(product);

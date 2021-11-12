@@ -20,10 +20,11 @@ public interface DataAccessInterface<T> {
 	public List<T> findAll() throws DatabaseException;
 
 	/**
-	 * Optional
+	 * Returns object by Id
 	 * 
-	 * @param id
-	 * @return Returns Optional Template Objeect
+	 * @param int
+	 * @return Optional<T>
+	 * @throws DatabaseException
 	 */
 	public Optional<T> findById(int id);
 
@@ -41,6 +42,7 @@ public interface DataAccessInterface<T> {
 	 * 
 	 * @param t
 	 * @return boolean
+	 * @throws DatabaseException
 	 */
 	public boolean update(T t) throws DatabaseException;
 
@@ -49,6 +51,7 @@ public interface DataAccessInterface<T> {
 	 * 
 	 * @param t
 	 * @return boolean
+	 * @throws DatabaseException
 	 */
 	public boolean delete(T t) throws DatabaseException;
 }

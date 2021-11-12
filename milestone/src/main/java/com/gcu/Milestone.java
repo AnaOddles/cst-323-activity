@@ -9,11 +9,14 @@ package com.gcu;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Main application entry point
  * @author anasanchez
  *
  */
+@Slf4j
 @SpringBootApplication
 public class Milestone {
 	/**
@@ -21,6 +24,7 @@ public class Milestone {
 	 * @param args (String[] args)
 	 */
 	public static void main(String[] args) {
+		log.info("Starting application");
 		SpringApplication.run(Milestone.class, args);
 	}
 

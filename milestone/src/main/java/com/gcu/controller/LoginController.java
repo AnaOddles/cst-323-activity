@@ -70,8 +70,6 @@ public class LoginController {
 	 */
 	@PostMapping("/doLogin")
 	public String doLogin(@Valid LoginModel loginModel, BindingResult bindingResult, Model model) throws DatabaseException {
-		System.out.println("Attempting login");
-
 		// Check for validation errors
 		if (bindingResult.hasErrors()) {
 			// Valid LoginModel fails -> doesn't pass all model property requirements
@@ -94,7 +92,6 @@ public class LoginController {
 			model.addAttribute("title", "Login Failure");
 			// Set model attribute userLoginmessage
 			model.addAttribute("userLoginMessage", "Uh oh... please try again " + loginModel.getUsername());
-			System.out.println("Login failed for: " + loginModel.getUsername());
 			return "loginFailure";
 		}
 			
@@ -103,10 +100,7 @@ public class LoginController {
 			// Set model attribute userLoginMessage
 			model.addAttribute("userLoginMessage", "You have successfully logged in, " + loginModel.getUsername() + "!");
 			
-		
-			System.out.println("Logged In User ID: " + LoggedInUser.user);
 			model.addAttribute("user", LoggedInUser.user);
-			System.out.println("User logged in: " + loginModel.getUsername());
 			return "loginSuccess";
 		}
 

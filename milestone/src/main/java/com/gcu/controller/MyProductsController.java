@@ -123,7 +123,6 @@ public class MyProductsController {
 
 		try {
 			// Call service to create product
-			System.out.println("iD: " + productModel.getId());
 			productService.editProduct(productModel);
 		} catch (ProductAlreadyExistsException e) {
 

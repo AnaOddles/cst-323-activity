@@ -9,6 +9,7 @@ package com.gcu.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gcu.Milestone;
 import com.gcu.data.SecurityDataService;
 import com.gcu.data.entity.UserEntity;
 import com.gcu.model.LoggedInUser;
@@ -16,11 +17,14 @@ import com.gcu.model.LoginModel;
 import com.gcu.util.DatabaseException;
 import com.gcu.util.InvalidCredentialsException;
 import com.gcu.util.UserAlreadyExistsException;
+
+import lombok.extern.slf4j.Slf4j;
 /**
  * Business Service used for user security and authentication
  * @author anasanchez
  *
  */
+@Slf4j
 //Using @Service to create concrete instance of security service as a spring bean
 @Service
 public class SecurityBusinessService implements SecurityBusinessServiceInterface {
@@ -38,6 +42,7 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 	 */
 	@Override
 	public boolean authenticateUser(LoginModel login) throws InvalidCredentialsException, DatabaseException {
+		log.debug("In Security Business Service - authenticateUser");
 			
 		//Call Service to authenticate user - returns User Entity from databawe
 		UserEntity user = service.findByCredentials(new UserEntity(login.getUsername(), login.getPassword()));
@@ -49,12 +54,12 @@ public class SecurityBusinessService implements SecurityBusinessServiceInterface
 			login.setId(user.getUserId()); // Required for games FK
 			LoggedInUser.user = login;
 			
-			System.out.println("Logged in with: " + login.getUsername());
+			log.info("Logged in with: " + login.getUsername());
 			return true;
 		}
 		else
 		{
-			System.out.println("Login failed with: " + login.getUsername());
+			log.info("Login failed with: " + login.getUsername());
 			throw new InvalidCredentialsException();
 		}
 		

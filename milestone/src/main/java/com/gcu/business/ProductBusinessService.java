@@ -11,13 +11,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gcu.data.ProductsDataService;
 import com.gcu.data.entity.ProductEntity;
 import com.gcu.model.LoggedInUser;
 import com.gcu.model.ProductModel;
 import com.gcu.util.DatabaseException;
 import com.gcu.util.ProductAlreadyExistsException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Product Business Service used for product operations
@@ -25,6 +25,7 @@ import com.gcu.util.ProductAlreadyExistsException;
  * @author melzs
  *
  */
+@Slf4j
 @Service
 public class ProductBusinessService implements ProductBusinessServiceInterface {
 
@@ -41,7 +42,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public boolean createProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException {
-		System.out.println("Create Product Business Service");
+		log.debug("In Products Business Service - createProduct");
 
 		// Call the products data service to create product
 
@@ -49,7 +50,8 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		if (!service.create(new ProductEntity(LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()))) {
-			System.out.println("Cannot create duplicate product");
+			
+			log.error("Cannot create duplicate product - " + productModel.getName());
 			throw new ProductAlreadyExistsException();
 		}
 
@@ -58,13 +60,13 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 	@Override
 	public boolean editProduct(ProductModel productModel) throws DatabaseException, ProductAlreadyExistsException {
-		System.out.println("Edit Product Business Service");
+		log.debug("In Products Business Service - editProduct");
 
 		// If a product already exists - throw exception
 		if (!service.update(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()))) {
-			System.out.println("Cannot update to duplicate product");
+			log.error("Cannot update to duplicate product - " + productModel.getName());
 			throw new ProductAlreadyExistsException();
 		}
 		;
@@ -75,8 +77,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 	@Override
 	public boolean deleteProduct(ProductModel productModel) throws DatabaseException {
-		// TODO Auto-generated method stub
-		System.out.println("Delete Product Business Service");
+		log.debug("In Products Business Service - deleteProduct");
 
 		return service.delete(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
@@ -91,7 +92,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public List<ProductModel> getProducts() throws DatabaseException {
-
+		log.debug("In Products Business Service - getProducts");
 		// Call service to grab all products
 		List<ProductEntity> productsEntity = service.findAll();
 
@@ -115,6 +116,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public List<ProductModel> getMyProducts() throws DatabaseException {
+		log.debug("In Products Business Service - getMyProducts");
 
 		// Call service to bran all products for logged in user
 		List<ProductEntity> productsEntity = service.findByUserId(LoggedInUser.user.getId());
@@ -137,7 +139,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public void init() {
-		System.out.println("Initialize ProductBusinessService");
+		log.debug("Initialize ProductBusinessService");
 	}
 
 	/**
@@ -147,7 +149,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	 */
 	@Override
 	public void destroy() {
-		System.out.println("Destroy ProductBusinessService");
+		log.debug("Destroy ProductBusinessService");
 	}
 
 }

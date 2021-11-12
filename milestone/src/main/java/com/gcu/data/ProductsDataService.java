@@ -12,12 +12,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gcu.data.entity.ProductEntity;
 import com.gcu.data.repository.ProductsRepository;
 import com.gcu.model.LoggedInUser;
 import com.gcu.util.DatabaseException;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 
@@ -40,6 +41,8 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	 */
 	@Override
 	public List<ProductEntity> findAll() throws DatabaseException {
+		log.debug("In Products Data Service - findAll");
+		
 		List<ProductEntity> products = new ArrayList<ProductEntity>();
 
 		try {
@@ -49,6 +52,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 			productsIterable.forEach(products::add);
 
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -63,14 +67,16 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	 */
 	@Override
 	public boolean create(ProductEntity product) throws DatabaseException {
-		System.out.println("Product Data Service Create - Product: " + product.toString());
-		System.out.println("User ID: " + LoggedInUser.user.getId());
+		log.debug("In Products Data Service - create");
+		log.info("Creating product " + product.toString());
+		
 		try {
 			if (this.productsRepository.findByNameAndUserId(product.getName(), LoggedInUser.user.getId()) != null) {
 				return false;
 			}
 			this.productsRepository.save(product);
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			throw new DatabaseException(e, "Database exception");
 		}
 		return true;
@@ -81,16 +87,16 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	 */
 	@Override
 	public boolean update(ProductEntity product) throws DatabaseException {
-		// TODO Auto-generated method stub
-		System.out.println("Product Data Service Edit - Product: " + product.toString());
-		System.out.println("User ID: " + LoggedInUser.user.getId());
+		log.debug("In Products Data Service - update");
+		log.info("Updating product: " + product.toString());
+		
 		try {
 			if (this.productsRepository.findDuplicateProduct(product.getName(), product.getProductId(), LoggedInUser.user.getId()) != null) {
 				return false;
 			}
 			this.productsRepository.save(product);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.error(e.getMessage());
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -102,12 +108,13 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	 */
 	@Override
 	public boolean delete(ProductEntity product) throws DatabaseException {
+		log.debug("In Products Data Service - delete");
 		// TODO Auto-generated method stub
-		System.out.println("Product Data Service Delete - Product: " + product.toString());
+		log.info("Deleting product: " + product.toString());
 		try {
 			this.productsRepository.delete(product);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			log.error(e.getMessage());
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -122,6 +129,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	 * @throws DatabaseException
 	 */
 	public List<ProductEntity> findByUserId(long userId) throws DatabaseException {
+		log.debug("In Products Data Service - findByUserId");
 		List<ProductEntity> products = new ArrayList<ProductEntity>();
 
 		try {
@@ -131,6 +139,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 			productsIterable.forEach(products::add);
 
 		} catch (Exception e) {
+			log.error(e.getMessage());
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -144,8 +153,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	 */
 	@Override
 	public Optional<ProductEntity> findById(int id) {
-		// TODO Auto-generated method stub
-
+		log.debug("In Products Data Service - findById");
 		return null;
 	}
 

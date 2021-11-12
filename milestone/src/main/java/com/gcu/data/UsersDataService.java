@@ -45,22 +45,16 @@ public class UsersDataService implements DataAccessInterface<UserEntity> {
 	 */
 	@Transactional
 	public int create(UserEntity user, ProfileEntity profile) throws DatabaseException {
-		System.out.println("User Data Service Create - User: " + user.toString());
-		System.out.println("Profile Data Service Create - Profile: " + profile.toString());
-
 		try {
 
 			if (this.usersRepository.findByUsername(user.getUsername()) != null) {
-				System.out.println("User already exists");
 				return 1;
 			}
 			user = this.usersRepository.save(user);
 			profile.setUserId(user.getUserId());
-			System.out.println(profile.getUserId());
 			this.profilesRepository.save(profile);
 
 		} catch (Exception e) {
-			// e.printStackTrace();
 			throw new DatabaseException(e, "Database exception");
 		}
 		return 0;
@@ -82,7 +76,6 @@ public class UsersDataService implements DataAccessInterface<UserEntity> {
 	 */
 	@Override
 	public Optional<UserEntity> findById(int id) {
-		System.out.println("Grabbing a user with id: " + id);
 		return usersRepository.findById((long) id);
 	}
 

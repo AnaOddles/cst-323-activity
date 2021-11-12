@@ -75,6 +75,41 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 	}
 
 	/**
+	 * Not yet Implemented
+	 */
+	@Override
+	public boolean update(ProductEntity product) throws DatabaseException {
+		// TODO Auto-generated method stub
+		System.out.println("Product Data Service Edit - Product: " + product.toString());
+		try {
+			if (this.productsRepository.findByName(product.getName()) != null) {
+				return false;
+			}
+			this.productsRepository.save(product);
+		} catch (Exception e) {
+			throw new DatabaseException(e, "Database exception");
+		}
+
+		return true;
+	}
+
+	/**
+	 * Not yet Implemented
+	 */
+	@Override
+	public boolean delete(ProductEntity product) throws DatabaseException {
+		// TODO Auto-generated method stub
+		System.out.println("Product Data Service Delete - Product: " + product.toString());
+		try {
+			this.productsRepository.delete(product);
+		} catch (Exception e) {
+			throw new DatabaseException(e, "Database exception");
+		}
+
+		return true;
+	}
+
+	/**
 	 * Find List of Product Entity by user id with Database Exception
 	 * 
 	 * @param userId
@@ -107,33 +142,6 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 		// TODO Auto-generated method stub
 
 		return null;
-	}
-
-	/**
-	 * Not yet Implemented
-	 */
-	@Override
-	public boolean update(ProductEntity product) {
-		// TODO Auto-generated method stub
-		System.out.println("Product Data Service Edit - Product: " + product.toString());
-		
-		this.productsRepository.save(product);
-		
-		
-		return true;
-	}
-
-	/**
-	 * Not yet Implemented
-	 */
-	@Override
-	public boolean delete(ProductEntity product) {
-		// TODO Auto-generated method stub
-		System.out.println("Product Data Service Delete - Product: " + product.toString());
-		
-		this.productsRepository.delete(product);
-		
-		return true;
 	}
 
 }

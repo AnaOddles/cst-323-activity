@@ -8,13 +8,14 @@ package com.gcu.data;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.UsersRepository;
 import com.gcu.util.DatabaseException;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class SecurityDataService implements DataAccessInterface<UserEntity> {
 
@@ -82,18 +83,12 @@ public class SecurityDataService implements DataAccessInterface<UserEntity> {
 	 * @throws DatabaseException
 	 */
 	public UserEntity findByCredentials(UserEntity t) throws DatabaseException {
-
 		try {
-			System.out.println("Loggining in: " + t.toString());
-			System.out.println(usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()));
-
 			// Use user repository to see if username and password exist
 			if (usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword()) == null) {
-				System.out.println("Invalid credentials!");
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			throw new DatabaseException(e, "Database exception");
 		}
 		return usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword());

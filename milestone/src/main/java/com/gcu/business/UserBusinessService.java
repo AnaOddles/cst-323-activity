@@ -14,11 +14,14 @@ import com.gcu.data.entity.UserEntity;
 import com.gcu.model.RegisterModel;
 import com.gcu.util.DatabaseException;
 import com.gcu.util.UserAlreadyExistsException;
+
+import lombok.extern.slf4j.Slf4j;
 /**
  * Business Service used for user and user profile functionality
  * @author anasanchez
  *
  */
+@Slf4j
 @Service
 public class UserBusinessService implements UserBusinessServiceInterface {
 	
@@ -34,8 +37,9 @@ public class UserBusinessService implements UserBusinessServiceInterface {
 	 */
 	@Override
 	public boolean register(RegisterModel register) throws UserAlreadyExistsException, DatabaseException {
+		log.debug("In User Business Service - register");
 		
-		System.out.println("Registering a user to the database!");
+		log.info("Registering a user to the database - " + register.getLoginUser().getUsername());
 		//Call service to register user 
 		int registeredUser = service.create(new UserEntity(register.getLoginUser().getUsername(), register.getLoginUser().getPassword())
 				,new ProfileEntity(register.getFirstName(), register.getLastName(), register.getAge(),
@@ -43,7 +47,7 @@ public class UserBusinessService implements UserBusinessServiceInterface {
 	
 		//If user already exists throw exception
 		if(registeredUser == 1) {
-			System.out.println("User already exists!");
+			log.error("User already exists - " + register.getLoginUser().getUsername());
 			throw new UserAlreadyExistsException();
 		}
 		return true;

@@ -19,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
  * @author anasanchez
  *
  */
-@Slf4j
 @Service
 public class SecurityDataService implements DataAccessInterface<UserEntity> {
 
@@ -86,17 +85,17 @@ public class SecurityDataService implements DataAccessInterface<UserEntity> {
 	 * @return User Entity
 	 * @throws DatabaseException
 	 */
-	public UserEntity findByCredentials(UserEntity t) throws DatabaseException {
+	public UserEntity findByCredentials(String username) throws DatabaseException {
 		//Try catch to catch any database errors
 		try {
 			// Use user repository to see if username and password exist
-			usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword());
+			usersRepository.findByUsername(username);
 			
 		} catch (Exception e) {
 			//throw database exception custom exception
 			throw new DatabaseException(e, "Database exception");
 		}
 		//If no errors use user repository to check if users exists with passed in username and password
-		return usersRepository.findByUsernameAndPassword(t.getUsername(), t.getPassword());
+		return usersRepository.findByUsername(username);
 	}
 }

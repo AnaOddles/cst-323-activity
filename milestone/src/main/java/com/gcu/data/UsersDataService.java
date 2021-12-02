@@ -9,6 +9,7 @@ package com.gcu.data;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.gcu.data.entity.ProfileEntity;
@@ -55,6 +56,11 @@ public class UsersDataService implements DataAccessInterface<UserEntity> {
 				//exit and return 1 if user exists
 				return 1;
 			}
+			
+			// Encode Password
+			String encoded = new BCryptPasswordEncoder().encode(user.getPassword());
+			user.setPassword(encoded);
+			
 			//If user does not already exist - use users repository to persist into db
 			user = this.usersRepository.save(user);
 			//Grab the userId from user just added into database and set it o to profile entity

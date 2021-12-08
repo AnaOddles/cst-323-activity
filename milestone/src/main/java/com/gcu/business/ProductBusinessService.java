@@ -50,7 +50,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		if (!service.create(new ProductEntity(LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()))) {
-			
+
 			log.error("Cannot create duplicate product - " + productModel.getName());
 			throw new ProductAlreadyExistsException();
 		}
@@ -107,7 +107,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	@Override
 	public List<ProductModel> getProducts() throws DatabaseException {
 		log.debug("In Products Business Service - getProducts");
-		
+
 		// Call service to grab all products
 		List<ProductEntity> productsEntity = service.findAll();
 
@@ -123,10 +123,27 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 	}
 
+	@Override
+	public ProductModel getByGameId(long id) throws DatabaseException {
+		// TODO Auto-generated method stub
+		log.debug("Get product by GameId");
+		try {
+			ProductEntity entity = service.findByGameId(id);
+
+			ProductModel product = new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),
+					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),
+					entity.getImage(), entity.getDescription());
+
+			return product;
+		} catch (Exception e) {
+			throw new DatabaseException();
+		}
+	}
+
 	/**
 	 * Method to get all products for logged in user
 	 * 
-	 * @return List<ProductModel> 
+	 * @return List<ProductModel>
 	 * @throws DatabaseException
 	 */
 	@Override
@@ -138,8 +155,8 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 
 		// Prepping to return a list of products models for view
 		List<ProductModel> productsDomain = new ArrayList<ProductModel>();
-		
-		//Create product models to return back to products view
+
+		// Create product models to return back to products view
 		for (ProductEntity entity : productsEntity) {
 			productsDomain.add(new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),
 					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),

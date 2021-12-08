@@ -71,6 +71,8 @@ public interface ProductBusinessServiceInterface {
 	 */
 	List<ProductModel> getMyProducts() throws DatabaseException;
 	
+	ProductModel getByGameId(long id) throws DatabaseException;
+	
 	/**
 	 * Method for spring bean upon init
 	 * 

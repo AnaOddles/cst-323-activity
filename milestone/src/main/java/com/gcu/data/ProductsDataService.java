@@ -170,6 +170,20 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 
 		return products;
 	}
+	
+	public ProductEntity findByGameId(long gameId) throws DatabaseException {
+		log.debug("In findByGameId");
+		ProductEntity product = new ProductEntity();
+		
+		try {
+			product = productsRepository.findByGameId(gameId);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			throw new DatabaseException(e, "Database expcetion");
+		}
+		
+		return product;
+	}
 
 	/**
 	 * Return Optional Product Entity Find by ID

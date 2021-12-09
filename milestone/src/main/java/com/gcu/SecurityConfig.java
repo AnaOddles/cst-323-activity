@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.gcu.business.SpringSecurityBusinessService;
-import com.gcu.util.DatabaseException;
+
 
 @Configuration
 @EnableWebSecurity

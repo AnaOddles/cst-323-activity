@@ -22,17 +22,35 @@ public class ProductRestService {
 	private ProductBusinessServiceInterface service;
 
 	@GetMapping(path = "/getproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<ProductModel> getProducts() throws DatabaseException {
-		return service.getProducts();
+	public ResponseEntity<?> getProducts() {
+		try {
+			List<ProductModel> productList = service.getProducts();
+			if (productList == null) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			} else {
+				return new ResponseEntity<>(productList, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping(path = "/getmyproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<ProductModel> getMyProdcts() throws DatabaseException {
-		return service.getMyProducts();
+	public ResponseEntity<?> getMyProdcts() {
+		try {
+			List<ProductModel> productList = service.getMyProducts();
+			if (productList == null) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			} else {
+				return new ResponseEntity<>(productList, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping(path = "/getproduct/{id}")
-	public ResponseEntity<?> getProductById(@PathVariable("id") long id) throws DatabaseException {
+	public ResponseEntity<?> getProductById(@PathVariable("id") long id) {
 		try {
 			ProductModel product = service.getByGameId(id);
 			if (product == null) {

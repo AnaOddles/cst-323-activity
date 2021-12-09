@@ -12,15 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gcu.model.ProductModel;
-import com.gcu.util.DatabaseException;
 
+// Rest Controller for REST API
 @RestController
 @RequestMapping("/service")
 public class ProductRestService {
-
+	
+	// Autowire Products Service
 	@Autowired
 	private ProductBusinessServiceInterface service;
-
+	
+	/**
+	 * Returns all products in JSON Format
+	 * /service/getproducts
+	 * 
+	 * @return Response Entity - List of all products
+	 */
 	@GetMapping(path = "/getproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getProducts() {
 		try {
@@ -34,7 +41,13 @@ public class ProductRestService {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	
+	/**
+	 * Returns one users products in JSON Format 
+	 * /service/getmyproducts
+	 * 
+	 * @return Response Entity - List of users products
+	 */
 	@GetMapping(path = "/getmyproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getMyProdcts() {
 		try {
@@ -48,7 +61,14 @@ public class ProductRestService {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	
+	/**
+	 * Returns one product by its ID
+	 * /service/getproduct/{id}
+	 * 
+	 * @param id
+	 * @return Return one product by its ID
+	 */
 	@GetMapping(path = "/getproduct/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable("id") long id) {
 		try {

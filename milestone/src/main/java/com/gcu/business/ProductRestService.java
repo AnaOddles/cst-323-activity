@@ -12,27 +12,65 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gcu.model.ProductModel;
-import com.gcu.util.DatabaseException;
 
+// Rest Controller for REST API
 @RestController
 @RequestMapping("/service")
 public class ProductRestService {
-
+	
+	// Autowire Products Service
 	@Autowired
 	private ProductBusinessServiceInterface service;
-
+	
+	/**
+	 * Returns all products in JSON Format
+	 * /service/getproducts
+	 * 
+	 * @return Response Entity - List of all products
+	 */
 	@GetMapping(path = "/getproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<ProductModel> getProducts() throws DatabaseException {
-		return service.getProducts();
+	public ResponseEntity<?> getProducts() {
+		try {
+			List<ProductModel> productList = service.getProducts();
+			if (productList == null) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			} else {
+				return new ResponseEntity<>(productList, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
-
+	
+	/**
+	 * Returns one users products in JSON Format 
+	 * /service/getmyproducts
+	 * 
+	 * @return Response Entity - List of users products
+	 */
 	@GetMapping(path = "/getmyproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<ProductModel> getMyProdcts() throws DatabaseException {
-		return service.getMyProducts();
+	public ResponseEntity<?> getMyProdcts() {
+		try {
+			List<ProductModel> productList = service.getMyProducts();
+			if (productList == null) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			} else {
+				return new ResponseEntity<>(productList, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
-
+	
+	/**
+	 * Returns one product by its ID
+	 * /service/getproduct/{id}
+	 * 
+	 * @param id
+	 * @return Return one product by its ID
+	 */
 	@GetMapping(path = "/getproduct/{id}")
-	public ResponseEntity<?> getProductById(@PathVariable("id") long id) throws DatabaseException {
+	public ResponseEntity<?> getProductById(@PathVariable("id") long id) {
 		try {
 			ProductModel product = service.getByGameId(id);
 			if (product == null) {

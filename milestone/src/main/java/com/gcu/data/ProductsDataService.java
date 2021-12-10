@@ -171,6 +171,13 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 		return products;
 	}
 	
+	/**
+	 * Returns a Product using its gameId
+	 * 
+	 * @param gameId
+	 * @return ProductEntity
+	 * @throws DatabaseException
+	 */
 	public ProductEntity findByGameId(long gameId) throws DatabaseException {
 		log.debug("In findByGameId");
 		ProductEntity product = new ProductEntity();

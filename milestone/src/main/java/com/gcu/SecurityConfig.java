@@ -44,6 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		http.csrf().disable()
+		.httpBasic()
+			.and()
+			.authorizeRequests()
+				.antMatchers("/service/**").authenticated()
+				.and()
 		.authorizeRequests()
 			.antMatchers("/login/", "/register/**").permitAll() //Pages that are accessible to all
 			.anyRequest().authenticated()

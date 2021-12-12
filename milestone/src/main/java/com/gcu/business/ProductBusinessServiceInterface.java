@@ -71,6 +71,13 @@ public interface ProductBusinessServiceInterface {
 	 */
 	List<ProductModel> getMyProducts() throws DatabaseException;
 	
+	/**
+	 * Exception 
+	 * 
+	 * @param id
+	 * @return ProductModel
+	 * @throws DatabaseException
+	 */
 	ProductModel getByGameId(long id) throws DatabaseException;
 	
 	/**

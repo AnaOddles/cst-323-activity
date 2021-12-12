@@ -122,7 +122,13 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		return productsDomain;
 
 	}
-
+	
+	/**
+	 * Method to get a product by its GameID
+	 * 
+	 * @return ProductModel
+	 * @throws DatabaseException
+	 */
 	@Override
 	public ProductModel getByGameId(long id) throws DatabaseException {
 		// TODO Auto-generated method stub

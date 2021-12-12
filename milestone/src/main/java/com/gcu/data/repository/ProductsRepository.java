@@ -28,6 +28,11 @@ public interface ProductsRepository extends CrudRepository<ProductEntity, Long> 
 	@Query("SELECT * FROM games WHERE name = :name AND user_Id = :userId")
 	ProductEntity findByNameAndUserId(String name, long userId);
 	
+	/**
+	 * Find Product by GameId
+	 * @param gameId
+	 * @return ProductEntity product
+	 */
 	@Query("SELECT * FROM games WHERE game_id = :gameId")
 	ProductEntity findByGameId(long gameId);
 	

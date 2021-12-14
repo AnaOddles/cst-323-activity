@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu.data;
@@ -13,15 +13,17 @@ import org.springframework.stereotype.Service;
 import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.UsersRepository;
 import com.gcu.util.DatabaseException;
-import lombok.extern.slf4j.Slf4j;
+
 /**
  * Data service class for security
  * @author anasanchez
  *
  */
+// Service
 @Service
 public class SecurityDataService implements DataAccessInterface<UserEntity> {
-
+	
+	// Autowire repository
 	@Autowired
 	private UsersRepository usersRepository;
 

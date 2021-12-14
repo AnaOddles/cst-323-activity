@@ -1,3 +1,9 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// December 13, 2021
+// This is our own work
+
 package com.gcu;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +23,18 @@ import com.gcu.business.SpringSecurityBusinessService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	// Autowire Objects
 	@Autowired 
 	PasswordEncoder passwordEncoder; 
 	
 	@Autowired
 	SpringSecurityBusinessService service; 
 	
+	/**
+	 * Bean
+	 * 
+	 * @return BCryptPasswordEncoder
+	 */
 	@Bean 
 	BCryptPasswordEncoder passwordEncoder()
 	{
@@ -43,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception
 	{
+		// Set configuration
 		http.csrf().disable()
 		.httpBasic()
 			.and()
@@ -83,6 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired 
 	public void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
+		// Set auth service
 		auth
 		.userDetailsService(service)
 		.passwordEncoder(passwordEncoder);	

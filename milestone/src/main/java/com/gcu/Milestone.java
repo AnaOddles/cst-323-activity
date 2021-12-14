@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu;
@@ -24,6 +24,7 @@ public class Milestone {
 	 * @param args (String[] args)
 	 */
 	public static void main(String[] args) {
+		// Log It
 		log.info("Starting application");
 		SpringApplication.run(Milestone.class, args);
 	}

@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu.data.repository;
@@ -32,6 +32,7 @@ public interface ProductsRepository extends CrudRepository<ProductEntity, Long> 
 	/**
 	 * Find a game by Id
 	 * @param long gameId
+
 	 * @return ProductEntity product
 	 */
 	@Query("SELECT * FROM games WHERE game_id = :gameId")

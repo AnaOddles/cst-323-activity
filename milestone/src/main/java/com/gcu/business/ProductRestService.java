@@ -1,3 +1,9 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// December 13, 2021
+// This is our own work
+
 package com.gcu.business;
 
 import java.util.List;
@@ -43,6 +49,7 @@ public class ProductRestService {
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
+			// Internal server error
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -68,6 +75,7 @@ public class ProductRestService {
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
+			// Internal server error
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -94,6 +102,7 @@ public class ProductRestService {
 				return new ResponseEntity<>(product, HttpStatus.OK);
 			} 
 		} catch (Exception e) {
+			// Internal server error
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

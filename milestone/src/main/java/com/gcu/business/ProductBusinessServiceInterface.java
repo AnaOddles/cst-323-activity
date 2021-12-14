@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu.business;
@@ -71,6 +71,13 @@ public interface ProductBusinessServiceInterface {
 	 */
 	List<ProductModel> getMyProducts() throws DatabaseException;
 	
+	/**
+	 * Exception 
+	 * 
+	 * @param id
+	 * @return ProductModel
+	 * @throws DatabaseException
+	 */
 	ProductModel getByGameId(long id) throws DatabaseException;
 	
 	/**

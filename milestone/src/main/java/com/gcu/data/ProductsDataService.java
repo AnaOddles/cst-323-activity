@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu.data;
@@ -23,15 +23,17 @@ import lombok.extern.slf4j.Slf4j;
  * @author anasanchez
  *
  */
+// Service Annotation
 @Slf4j
 @Service
 public class ProductsDataService implements DataAccessInterface<ProductEntity> {
-
+	
+	// Autowire Repository
 	@Autowired
 	private ProductsRepository productsRepository;
 
 	/**
-	 * Constructpr
+	 * Constructor
 	 * 
 	 * @param productsRepository
 	 */
@@ -117,6 +119,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 			this.productsRepository.save(product);
 		} catch (Exception e) {
 			log.error(e.getMessage());
+			// Catch and throw exception
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -139,6 +142,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 			this.productsRepository.delete(product);
 		} catch (Exception e) {
 			log.error(e.getMessage());
+			// Catch and throw exception
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -165,6 +169,7 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 
 		} catch (Exception e) {
 			log.error(e.getMessage());
+			// Catch and throw exception
 			throw new DatabaseException(e, "Database exception");
 		}
 
@@ -183,9 +188,11 @@ public class ProductsDataService implements DataAccessInterface<ProductEntity> {
 		ProductEntity product = new ProductEntity();
 		
 		try {
+			// Retrieve Product Entity
 			product = productsRepository.findByGameId(gameId);
 		} catch (Exception e) {
 			log.error(e.getMessage());
+			// Catch and Throw exception
 			throw new DatabaseException(e, "Database expcetion");
 		}
 		

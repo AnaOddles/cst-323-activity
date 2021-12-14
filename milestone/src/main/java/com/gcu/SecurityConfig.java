@@ -44,15 +44,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		http.csrf().disable()
+		//Security configuration for API - http basic
 		.httpBasic()
 			.and()
 			.authorizeRequests()
+				//Secure URI paths with /service
 				.antMatchers("/service/**").authenticated()
 				.and()
 		.authorizeRequests()
 			.antMatchers("/login/", "/register/**").permitAll() //Pages that are accessible to all
 			.anyRequest().authenticated()
 			.and()
+			//Security configuration for authentication
 		.formLogin()
 			.loginPage("/login")
 			.failureUrl("/login?error") //Forward after failed login attempt
@@ -83,6 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired 
 	public void configure(AuthenticationManagerBuilder auth) throws Exception
 	{
+		//Configure the authentication service and bind to AuthenticationManagerBuilder
 		auth
 		.userDetailsService(service)
 		.passwordEncoder(passwordEncoder);	

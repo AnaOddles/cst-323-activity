@@ -105,6 +105,17 @@ public class MyProductsController {
 		return "myProducts";
 	}
 
+	/**
+	 * Return a view name along with a model attribute Mappings - Invokes using
+	 * '/editProduct' in URI after controller mapping '/products/editProduct'
+	 * 
+	 * @param productModel
+	 * @param bindingResult
+	 * @param model
+	 * @return String for view forwarded to
+	 * @throws DatabaseException
+	 * @throws ProductAlreadyExistsException
+	 */
 	@PostMapping("/editProduct")
 	public String editProduct(@Valid ProductModel productModel, BindingResult bindingResult, Model model)
 			throws DatabaseException, ProductAlreadyExistsException {
@@ -141,6 +152,16 @@ public class MyProductsController {
 		return "myProducts";
 	}
 
+	/**
+	 * Return a view name along with a model attribute Mappings - Invokes using
+	 * '/deleteProduct' in URI after controller mapping '/products/deleteProduct'
+	 * 
+	 * @param productModel
+	 * @param model
+	 * @return String for view forwarded to
+	 * @throws DatabaseException
+	 * @throws ProductAlreadyExistsException
+	 */
 	@PostMapping("/deleteProduct")
 	public String deleteProduct(ProductModel productModel, Model model)
 			throws DatabaseException, ProductAlreadyExistsException {

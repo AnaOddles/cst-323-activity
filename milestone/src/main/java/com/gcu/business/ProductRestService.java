@@ -37,13 +37,15 @@ public class ProductRestService {
 	@GetMapping(path = "/getproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getProducts() {
 		try {
-			// Get List of ProductModel
+			//Call products business service and grab all products
 			List<ProductModel> productList = service.getProducts();
-			// No products --> return not found
+			
+			//If no products are returned 
 			if (productList == null) {
+				//Return NOT FOUND Response 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
-				// All products --> OK return
+				//Else - return OK Response 
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
@@ -61,13 +63,15 @@ public class ProductRestService {
 	@GetMapping(path = "/getmyproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getMyProdcts() {
 		try {
-			// Get List of ProductModel
+			//Call products business service and grab all products for user logged in
 			List<ProductModel> productList = service.getMyProducts();
-			// No products --> return not found
+			
+			//If no products are returned 
 			if (productList == null) {
+				//Return NOT FOUND Response 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
-				// All products --> OK return
+				//Else - return OK Response 
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
@@ -86,13 +90,15 @@ public class ProductRestService {
 	@GetMapping(path = "/getproduct/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable("id") long id) {
 		try {
-			// Get ProductModel
+			//Call products business service and grab all a specified product 
 			ProductModel product = service.getByGameId(id);
-			// No product --> return not found
+			
+			//If no product is returned 
 			if (product == null) {
+				//Return NOT FOUND Response 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
-				// Found product --> return OK
+				//Else - return OK Response 
 				return new ResponseEntity<>(product, HttpStatus.OK);
 			} 
 		} catch (Exception e) {

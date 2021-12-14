@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.UsersRepository;
 import com.gcu.util.DatabaseException;
-
 /**
  * Data service class for security
  * @author anasanchez

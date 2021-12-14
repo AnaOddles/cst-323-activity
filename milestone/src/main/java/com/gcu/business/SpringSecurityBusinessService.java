@@ -1,6 +1,13 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// December 13, 2021
+// This is our own work
+
 package com.gcu.business;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +27,12 @@ import com.gcu.util.DatabaseException;
 
 import lombok.extern.slf4j.Slf4j;
 
+// Service
 @Service
 @Slf4j
 public class SpringSecurityBusinessService implements UserDetailsService {
-
+	
+	// Autowire service
 	@Autowired
 	private SecurityDataService service;
 

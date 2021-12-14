@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu.business;
@@ -21,10 +21,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author anasanchez
  *
  */
+// Service
 @Slf4j
 @Service
 public class UserBusinessService implements UserBusinessServiceInterface {
 	
+	// Autowire service
 	@Autowired
 	UsersDataService service;
 	

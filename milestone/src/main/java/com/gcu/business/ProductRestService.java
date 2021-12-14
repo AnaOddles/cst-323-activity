@@ -1,3 +1,9 @@
+// Melanie Spence and Ana Sanchez
+// CST-339
+// Milestone
+// December 13, 2021
+// This is our own work
+
 package com.gcu.business;
 
 import java.util.List;
@@ -31,13 +37,17 @@ public class ProductRestService {
 	@GetMapping(path = "/getproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getProducts() {
 		try {
+			// Get List of ProductModel
 			List<ProductModel> productList = service.getProducts();
+			// No products --> return not found
 			if (productList == null) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
+				// All products --> OK return
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
+			// Internal server error
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -51,13 +61,17 @@ public class ProductRestService {
 	@GetMapping(path = "/getmyproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getMyProdcts() {
 		try {
+			// Get List of ProductModel
 			List<ProductModel> productList = service.getMyProducts();
+			// No products --> return not found
 			if (productList == null) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
+				// All products --> OK return
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
+			// Internal server error
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -72,13 +86,17 @@ public class ProductRestService {
 	@GetMapping(path = "/getproduct/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable("id") long id) {
 		try {
+			// Get ProductModel
 			ProductModel product = service.getByGameId(id);
+			// No product --> return not found
 			if (product == null) {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
+				// Found product --> return OK
 				return new ResponseEntity<>(product, HttpStatus.OK);
 			} 
 		} catch (Exception e) {
+			// Internal server error
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

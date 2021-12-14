@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu.business;
@@ -50,7 +50,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		if (!service.create(new ProductEntity(LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()))) {
-
+			// Log error and throw exception
 			log.error("Cannot create duplicate product - " + productModel.getName());
 			throw new ProductAlreadyExistsException();
 		}
@@ -74,10 +74,11 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		if (!service.update(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()))) {
+			// Log error and throw exception
 			log.error("Cannot update to duplicate product - " + productModel.getName());
 			throw new ProductAlreadyExistsException();
-		}
-		;
+		};
+		
 		return true;
 	}
 
@@ -92,7 +93,7 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 	@Override
 	public boolean deleteProduct(ProductModel productModel) throws DatabaseException {
 		log.debug("In Products Business Service - deleteProduct");
-
+		// Delete product
 		return service.delete(new ProductEntity(productModel.getId(), LoggedInUser.user.getId(), productModel.getName(),
 				productModel.getPublisher(), productModel.getGenre(), productModel.getRating(),
 				productModel.getPlatform(), productModel.getImage(), productModel.getDescription()));
@@ -135,13 +136,14 @@ public class ProductBusinessService implements ProductBusinessServiceInterface {
 		log.debug("Get product by GameId");
 		try {
 			ProductEntity entity = service.findByGameId(id);
-
+			// Create Product based off Entity
 			ProductModel product = new ProductModel(entity.getProductId(), entity.getUserId(), entity.getName(),
 					entity.getPublisher(), entity.getGenre(), entity.getRating(), entity.getPlatform(),
 					entity.getImage(), entity.getDescription());
 
 			return product;
 		} catch (Exception e) {
+			// Catch and throw exception
 			throw new DatabaseException();
 		}
 	}

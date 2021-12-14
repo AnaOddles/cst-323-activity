@@ -10,6 +10,11 @@ import java.util.List;
 import java.util.Optional;
 import com.gcu.util.DatabaseException;
 
+/**
+ * Interface for Data Access
+ * @author anasanchez
+ *
+ */
 public interface DataAccessInterface<T> {
 	/**
 	 * Returns List of Template Object Exception

@@ -1,7 +1,7 @@
 // Melanie Spence and Ana Sanchez
 // CST-339
 // Milestone
-// November 7, 2021
+// December 13, 2021
 // This is our own work
 
 package com.gcu.data.mapper;
@@ -20,6 +20,7 @@ public class ProductRowMapper implements RowMapper<ProductEntity> {
 	 */
 	@Override
 	public ProductEntity mapRow(ResultSet rs, int rowNumber) throws SQLException {
+		// Return ProductEntity object
 		return new ProductEntity(rs.getLong("game_Id"), rs.getLong("user_Id"), rs.getString("name"),
 				rs.getString("publisher"), rs.getString("genre"), rs.getString("rating"), rs.getString("platform"),
 				rs.getString("image"), rs.getString("description"));

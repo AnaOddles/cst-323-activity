@@ -31,10 +31,15 @@ public class ProductRestService {
 	@GetMapping(path = "/getproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getProducts() {
 		try {
+			//Call products business service and grab all products
 			List<ProductModel> productList = service.getProducts();
+			
+			//If no products are returned 
 			if (productList == null) {
+				//Return NOT FOUND Response 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
+				//Else - return OK Response 
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
@@ -51,10 +56,15 @@ public class ProductRestService {
 	@GetMapping(path = "/getmyproducts", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<?> getMyProdcts() {
 		try {
+			//Call products business service and grab all products for user logged in
 			List<ProductModel> productList = service.getMyProducts();
+			
+			//If no products are returned 
 			if (productList == null) {
+				//Return NOT FOUND Response 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
+				//Else - return OK Response 
 				return new ResponseEntity<>(productList, HttpStatus.OK);
 			}
 		} catch (Exception e) {
@@ -72,10 +82,15 @@ public class ProductRestService {
 	@GetMapping(path = "/getproduct/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable("id") long id) {
 		try {
+			//Call products business service and grab all a specified product 
 			ProductModel product = service.getByGameId(id);
+			
+			//If no product is returned 
 			if (product == null) {
+				//Return NOT FOUND Response 
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} else {
+				//Else - return OK Response 
 				return new ResponseEntity<>(product, HttpStatus.OK);
 			} 
 		} catch (Exception e) {

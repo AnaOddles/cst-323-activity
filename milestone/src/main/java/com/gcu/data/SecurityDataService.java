@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.gcu.data.entity.UserEntity;
 import com.gcu.data.repository.UsersRepository;
 import com.gcu.util.DatabaseException;
-import lombok.extern.slf4j.Slf4j;
 /**
  * Data service class for security
  * @author anasanchez

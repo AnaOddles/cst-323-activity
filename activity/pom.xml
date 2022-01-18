@@ -69,12 +69,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-		
 
 	</dependencies>
 
 	<build>
-		<finalName>cst-323 activity</finalName>
+		<finalName>app</finalName>
 		<plugins>
 
 			<plugin>
